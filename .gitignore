@@ -67,3 +67,145 @@ vcpkg_installed/
 # test output & cache
 Testing/
 .cache/
+
+> ## Documentation Index
+> Fetch the complete documentation index at: https://docs.baseten.co/llms.txt
+> Use this file to discover all available pages before exploring further.
+
+# Model recipes
+
+> Run popular models through optimized inference engines on Baseten.
+
+Each page in this section is a deploy-ready Truss config for an open-weight model family, with hardware, engine version, quantization, and serving flags chosen for a sensible default. If your model is a fine-tune of one of these base checkpoints, [bring over your weights](#bring-over-fine-tune-weights) rather than starting from scratch.
+
+If you are new to Baseten, work through [Deploy a model](https://docs.baseten.co/examples/create-a-model-with-rest.md) first.
+
+For optimized speech deployments and audio task selection, see [Speech and audio](https://docs.baseten.co/inference/audio/overview.md).
+
+## Build a recipe
+
+Pick a category, narrow by capability, then choose a family and preset to see the matching `config.yaml`. Every recipe links to its full page for deploy and inference steps.
+
+Category
+
+Model category
+
+## Browse recipes by category
+
+Pick a category to land on a representative family. The sidebar lists every family under each group.
+
+> [card] [LLMs](https://docs.baseten.co/examples/models/llm/qwen3.6.md)
+>
+> Chat-completions models served with vLLM or TensorRT-LLM, including Qwen, GLM, GPT-OSS, Gemma, Llama, MiniMax, Nemotron, Ornith, and Ling.
+
+> [card] [Image generation](https://docs.baseten.co/examples/models/image-gen/flux1.md)
+>
+> Text-to-image and text-to-video diffusion models.
+
+> [card] [Transcription](https://docs.baseten.co/examples/models/transcription/voxtral.md)
+>
+> Speech-to-text with Voxtral, Qwen3-ASR, and MOSS Transcribe.
+
+> [card] [Embedding](https://docs.baseten.co/examples/models/embedding/qwen3-embedding.md)
+>
+> Dense embeddings and cross-encoder rerankers served with BEI.
+
+## Browse by capability
+
+Every family page tags its capabilities. Open a capability page to see every recipe that supports it.
+
+> [card] [Reasoning](https://docs.baseten.co/examples/models/capabilities/reasoning)
+
+> [card] [Tool calling](https://docs.baseten.co/examples/models/capabilities/tool-calling)
+
+> [card] [Multimodal (image)](https://docs.baseten.co/examples/models/capabilities/multimodal-image)
+
+> [card] [Long context](https://docs.baseten.co/examples/models/capabilities/long-context)
+
+> [card] [Agentic](https://docs.baseten.co/examples/models/capabilities/agentic)
+
+> [card] [Speech to text](https://docs.baseten.co/examples/models/capabilities/speech-to-text)
+
+## Bring over fine-tune weights
+
+Most recipes in this section work as-is with a fine-tuned version of the base model. If you have your own weights from fine-tuning one of these base checkpoints, the only parameter you usually change is the Hugging Face ID pointing at your weights. The rest of the config (engine version, parsers, prefix caching, health checks) stays as written.
+
+> [!NOTE]
+>
+> Interested in fine-tuning? See [training on Baseten](https://docs.baseten.co/training/getting-started.md) to set up a workspace and start a run.
+
+### Swap the Hugging Face repo
+
+Three parameters in the config name the checkpoint. Change all three to point at your fine-tuned repo:
+
+| Parameter | Change to |
+| - | - |
+| `model_metadata.repo_id` | Your fine-tuned Hugging Face repo. |
+| `weights.source` | The `hf://` URI for the same repo with a branch or revision, like `hf://your-org/gemma-4-31B-it-finetune@main`. |
+| `weights.auth_secret_name` | Keep `hf_access_token` for gated repos and add the secret in your workspace before pushing. |
+| `--served-model-name` in `start_command` | The `model` string your clients pass in `chat.completions.create(model=...)`. |
+
+For example, here is how you'd adapt the [Gemma 4 31B recipe](https://docs.baseten.co/examples/models/llm/gemma-4.md) to point at a fine-tune:
+
+```diff config.yaml theme={"system"}
+ model_metadata:
+-  repo_id: RedHatAI/gemma-4-31B-it-FP8-block
++  repo_id: your-org/gemma-4-31B-it-finetune
+   example_model_input:
+     model: google/gemma-4-31B-it
+     ...
+ weights:
+-  - source: "hf://RedHatAI/gemma-4-31B-it-FP8-block@main"
++  - source: "hf://your-org/gemma-4-31B-it-finetune@main"
+     mount_location: "/app/checkpoint/gemma"
+     auth_secret_name: "hf_access_token"
+ docker_server:
+   start_command: >-
+     sh -c "GPU_COUNT=$(nvidia-smi --list-gpus | wc -l) && vllm serve /app/checkpoint/gemma
+     --tensor-parallel-size $GPU_COUNT
+-    --served-model-name google/gemma-4-31B-it
++    --served-model-name your-org/gemma-4-31B-it-finetune
+     ..."
+```
+
+For checkpoints in S3, GCS, or mirrored through Baseten, see [Baseten Delivery Network](https://docs.baseten.co/development/model/bdn.md) for `s3://`, `gs://`, and `bdn://` source URIs.
+
+### Match hardware to model size
+
+Pick the variant tab whose base model matches the size and architecture of your fine-tune, then copy that config. The `--tensor-parallel-size $GPU_COUNT` flag reads the GPU count at runtime, so the start command adapts automatically when you change `resources.accelerator`. See [resources](https://docs.baseten.co/deployment/resources.md) for the accelerator list.
+
+### Drop speculative decoding unless you trained a matching speculator
+
+Several recipes ship with an EAGLE3 draft model trained against the base checkpoint:
+
+```text config.yaml theme={"system"}
+--speculative-config.model RedHatAI/gemma-4-31B-it-speculator.eagle3
+--speculative-config.num_speculative_tokens 3
+--speculative-config.method eagle3
+```
+
+A fine-tune shifts the output distribution, so the base speculator's acceptance rate drops and latency gets worse, not better. Remove all three `--speculative-config.*` flags unless you have trained a speculator on your fine-tune.
+
+### Disable multimodal for text-only fine-tunes
+
+Multimodal recipes (Gemma 4, Llama 4) include `--limit-mm-per-prompt.image 1` to cap image inputs per prompt. If your fine-tune dropped the vision tower or you only need text serving, swap that flag:
+
+```diff config.yaml theme={"system"}
+- --limit-mm-per-prompt.image 1
++ --language-model-only
+```
+
+`--language-model-only` skips the multimodal preprocessing path and avoids loading the vision encoder weights.
+
+## When a recipe is not the right starting point
+
+The recipes assume open-weight models served over the OpenAI-compatible API. For other cases:
+
+| Case | Start here |
+| - | - |
+| Custom inference logic, or pre- or post-processing in Python | [Custom Python models](https://docs.baseten.co/examples/deploy-a-llm.md) |
+| A serving stack with no recipe yet | [vLLM](https://docs.baseten.co/examples/vllm.md), [SGLang](https://docs.baseten.co/examples/sglang.md), [Ollama](https://docs.baseten.co/examples/ollama.md), or [generic Docker](https://docs.baseten.co/examples/docker.md) |
+| Embeddings, rerankers, or classification beyond the listed recipes | [Embeddings with BEI](https://docs.baseten.co/examples/bei.md) |
+| TensorRT-LLM engines from scratch | [TensorRT-LLM](https://docs.baseten.co/examples/tensorrt-llm.md) |
+
+For a fine-tune of a base model not listed here, [contact support](mailto:support@baseten.co) and we can suggest a starting recipe.
