@@ -1,0 +1,2228 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#07080f" />
+  <meta name="description" content="NextLevel Super AI — Antimatter Future-Ready Workspace for Multi-AI Chat, Custom GPU Nodes, API Keys, and One-Click Websites." />
+  <title>NextLevel Super AI — Antimatter Future-Ready Workspace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=JetBrains+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['DM Sans', 'sans-serif'],
+            display: ['Manrope', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            antimatter: {
+              950: '#05060b',
+              900: '#090b14',
+              850: '#0e1120',
+              800: '#14182b',
+              700: '#1e2440',
+            }
+          },
+          animation: {
+            'spin-slow': 'spin 24s linear infinite',
+            'spin-reverse': 'spin 18s linear infinite reverse',
+            'pulse-glow': 'pulseGlow 4s ease-in-out infinite',
+            'float': 'float 6s ease-in-out infinite',
+          },
+          keyframes: {
+            pulseGlow: {
+              '0%, 100%': { opacity: 0.55, transform: 'scale(1)' },
+              '50%': { opacity: 0.9, transform: 'scale(1.06)' },
+            },
+            float: {
+              '0%, 100%': { transform: 'translateY(0px)' },
+              '50%': { transform: 'translateY(-8px)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :root {
+      --bg-app: #06070d;
+      --bg-sidebar: rgba(11, 13, 24, 0.88);
+      --bg-card: rgba(16, 20, 36, 0.72);
+      --bg-card-hover: rgba(24, 30, 54, 0.88);
+      --border-subtle: rgba(139, 92, 246, 0.16);
+      --border-strong: rgba(139, 92, 246, 0.36);
+      --text-primary: #f4f6ff;
+      --text-secondary: #98a2c3;
+      --text-muted: #646f94;
+      --accent-violet: #8b5cf6;
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+    }
+
+    html.light-theme {
+      --bg-app: #f4f6fb;
+      --bg-sidebar: rgba(255, 255, 255, 0.92);
+      --bg-card: rgba(255, 255, 255, 0.88);
+      --bg-card-hover: #ffffff;
+      --border-subtle: rgba(15, 23, 42, 0.09);
+      --border-strong: rgba(124, 58, 237, 0.3);
+      --text-primary: #0f172a;
+      --text-secondary: #475569;
+      --text-muted: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg-app);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.12), transparent 38%),
+        radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.1), transparent 36%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.07), transparent 42%);
+      background-attachment: fixed;
+    }
+
+    html.light-theme body {
+      background-image:
+        radial-gradient(circle at 15% 10%, rgba(139, 92, 246, 0.07), transparent 40%),
+        radial-gradient(circle at 85% 20%, rgba(6, 182, 212, 0.07), transparent 40%);
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(139, 92, 246, 0.28);
+      border-radius: 999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(139, 92, 246, 0.5);
+    }
+
+    .glass-panel {
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .glass-panel:hover {
+      border-color: var(--border-strong);
+    }
+
+    .sidebar-shell {
+      background: var(--bg-sidebar);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+      border-right: 1px solid var(--border-subtle);
+    }
+
+    .antimatter-gradient-text {
+      background: linear-gradient(135deg, #c4b5fd 0%, #38bdf8 50%, #34d399 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    html.light-theme .antimatter-gradient-text {
+      background: linear-gradient(135deg, #6d28d9 0%, #0284c7 55%, #059669 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .antimatter-btn {
+      background: linear-gradient(135deg, #7c3aed 0%, #2563eb 55%, #0891b2 100%);
+      color: #ffffff;
+      box-shadow: 0 8px 26px -6px rgba(124, 58, 237, 0.55);
+      transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+    }
+
+    .antimatter-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px -4px rgba(6, 182, 212, 0.5);
+      filter: brightness(1.07);
+    }
+
+    .antimatter-btn:active {
+      transform: translateY(0px);
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      width: 100%;
+      padding: 0.62rem 0.85rem;
+      border-radius: 0.8rem;
+      font-size: 0.88rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      transition: all 0.16s ease;
+      text-align: left;
+      border: 1px solid transparent;
+    }
+
+    .nav-item:hover {
+      color: var(--text-primary);
+      background: rgba(139, 92, 246, 0.1);
+    }
+
+    .nav-item.active {
+      color: #ffffff;
+      background: linear-gradient(90deg, rgba(139, 92, 246, 0.24), rgba(6, 182, 212, 0.12));
+      border-color: rgba(139, 92, 246, 0.38);
+      font-weight: 600;
+    }
+
+    html.light-theme .nav-item.active {
+      color: #4c1d95;
+      background: linear-gradient(90deg, rgba(139, 92, 246, 0.14), rgba(6, 182, 212, 0.08));
+    }
+
+    .page-view {
+      display: none;
+      animation: fadeSlideIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .page-view.active {
+      display: block;
+    }
+
+    @keyframes fadeSlideIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Typing dots */
+    .typing-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #38bdf8;
+      display: inline-block;
+      animation: bounceDot 1.3s infinite ease-in-out both;
+    }
+    .typing-dot:nth-child(1) { animation-delay: -0.32s; }
+    .typing-dot:nth-child(2) { animation-delay: -0.16s; }
+    @keyframes bounceDot {
+      0%, 80%, 100% { transform: scale(0.4); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    /* Code markdown styling inside chat */
+    .chat-prose pre {
+      background: rgba(5, 6, 12, 0.9);
+      border: 1px solid rgba(139, 92, 246, 0.25);
+      border-radius: 0.75rem;
+      padding: 0.85rem 1rem;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      color: #e2e8f0;
+      margin: 0.65rem 0;
+    }
+    .chat-prose code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.82em;
+      background: rgba(139, 92, 246, 0.16);
+      padding: 0.12rem 0.35rem;
+      border-radius: 0.35rem;
+    }
+    .chat-prose pre code {
+      background: transparent;
+      padding: 0;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-violet-500/30 selection:text-violet-200">
+  <!-- Mobile Sidebar Backdrop -->
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-30 hidden lg:hidden" onclick="toggleSidebar(false)"></div>
+
+  <div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- SIDEBAR -->
+    <aside id="sidebar" class="sidebar-shell fixed lg:sticky top-0 left-0 z-40 h-screen w-72 flex flex-col justify-between p-4 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-out">
+      <div class="space-y-4 overflow-y-auto pr-1">
+        <!-- Brand -->
+        <div class="flex items-center justify-between px-1 pt-1">
+          <a href="#home" onclick="navigateTo('home'); return false;" class="flex items-center gap-3 group">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-violet-600 via-cyan-500 to-emerald-400 p-[1.5px] shadow-lg shadow-violet-500/25 group-hover:scale-105 transition-transform">
+              <div class="w-full h-full rounded-[10px] bg-[#090b14] flex items-center justify-center">
+                <span class="text-base font-bold bg-gradient-to-tr from-violet-400 to-cyan-300 bg-clip-text text-transparent">✦</span>
+              </div>
+            </div>
+            <div>
+              <div class="font-display font-extrabold text-base tracking-tight leading-none">
+                nextlevel <span class="antimatter-gradient-text">super ai</span>
+              </div>
+              <div class="text-[10px] font-mono tracking-widest uppercase text-cyan-400/90 mt-1">ANTIMATTER OS v3.0</div>
+            </div>
+          </a>
+          <button onclick="toggleSidebar(false)" class="lg:hidden p-2 rounded-lg text-slate-400 hover:text-white hover:bg-white/5" aria-label="Close sidebar">✕</button>
+        </div>
+
+        <!-- New Conversation CTA -->
+        <button onclick="startNewConversation()" class="w-full antimatter-btn rounded-xl py-2.5 px-3.5 font-semibold text-sm flex items-center justify-between cursor-pointer">
+          <span class="flex items-center gap-2"><span class="text-base leading-none">＋</span> New AI session</span>
+          <kbd class="text-[11px] font-mono bg-black/25 px-1.5 py-0.5 rounded border border-white/15">⌘K</kbd>
+        </button>
+
+        <!-- Navigation -->
+        <div>
+          <div class="px-2.5 mb-1.5 text-[10px] font-mono font-semibold tracking-widest uppercase" style="color: var(--text-muted)">ANTIMATTER WORKSPACE</div>
+          <nav class="space-y-1" aria-label="Main navigation">
+            <button class="nav-item active" data-page="home" onclick="navigateTo('home')">
+              <span class="w-5 text-center text-violet-400">⌂</span>
+              <span>Overview</span>
+            </button>
+            <button class="nav-item" data-page="chat" onclick="navigateTo('chat')">
+              <span class="w-5 text-center text-cyan-400">◈</span>
+              <span class="flex-1">All-in-One AI Chat</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">MULTI</span>
+            </button>
+            <button class="nav-item" data-page="compute" onclick="navigateTo('compute')">
+              <span class="w-5 text-center text-emerald-400">⚡</span>
+              <span class="flex-1">GPU & API Keys</span>
+              <span id="sidebar-key-badge" class="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">0 LIVE</span>
+            </button>
+            <button class="nav-item" data-page="builder" onclick="navigateTo('builder')">
+              <span class="w-5 text-center text-fuchsia-400">▧</span>
+              <span class="flex-1">Antimatter Web Builder</span>
+            </button>
+            <button class="nav-item" data-page="tools" onclick="navigateTo('tools')">
+              <span class="w-5 text-center text-amber-400">✳</span>
+              <span class="flex-1">Explore AI Tools</span>
+            </button>
+            <button class="nav-item" data-page="library" onclick="navigateTo('library')">
+              <span class="w-5 text-center text-indigo-400">▤</span>
+              <span class="flex-1">My Library</span>
+              <span id="sidebar-lib-count" class="text-[10px] font-mono px-1.5 py-0.5 rounded-md bg-white/5 text-slate-400">0</span>
+            </button>
+          </nav>
+        </div>
+
+        <div class="border-t border-white/10 my-2"></div>
+
+        <!-- Pinned Direct Launchers -->
+        <div>
+          <div class="px-2.5 mb-1.5 flex items-center justify-between text-[10px] font-mono font-semibold tracking-widest uppercase" style="color: var(--text-muted)">
+            <span>DIRECT LAUNCHERS</span>
+            <button onclick="navigateTo('tools')" class="hover:text-cyan-400 transition-colors" title="Manage pinned tools">＋</button>
+          </div>
+          <div id="pinned-tools-list" class="space-y-1">
+            <!-- Populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="pt-3 border-t border-white/10 space-y-2.5">
+        <div onclick="navigateTo('compute')" class="glass-panel rounded-xl p-3 cursor-pointer group">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-sm shrink-0">
+              ⚡
+            </div>
+            <div class="min-w-0 flex-1">
+              <div class="text-xs font-semibold truncate group-hover:text-cyan-300 transition-colors" id="sidebar-gpu-name">No Active GPU Node</div>
+              <div class="text-[11px] truncate" style="color: var(--text-muted)" id="sidebar-gpu-sub">Click to connect GPU / APIs</div>
+            </div>
+            <span class="text-xs text-slate-400 group-hover:translate-x-0.5 transition-transform">→</span>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between px-1">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-violet-600 to-cyan-500 flex items-center justify-center text-xs font-bold text-white shadow">
+              AM
+            </div>
+            <div>
+              <div class="text-xs font-semibold leading-tight">Antimatter Architect</div>
+              <div class="text-[10px] font-mono text-emerald-400">● Future-Ready Core</div>
+            </div>
+          </div>
+          <button onclick="toggleTheme()" id="theme-toggle-btn" class="p-2 rounded-lg glass-panel text-xs hover:text-cyan-400" title="Toggle Dark / Light Mode">
+            ☀
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT AREA -->
+    <main class="flex-1 flex flex-col min-w-0">
+      <!-- Top Header Bar -->
+      <header class="sticky top-0 z-20 px-4 sm:px-8 py-3.5 backdrop-blur-xl border-b flex items-center justify-between gap-4" style="background: rgba(7, 8, 15, 0.72); border-color: var(--border-subtle);">
+        <div class="flex items-center gap-3">
+          <button onclick="toggleSidebar(true)" class="lg:hidden p-2 rounded-xl glass-panel text-sm" aria-label="Open menu">☰</button>
+          <div class="flex items-center gap-2 text-xs sm:text-sm">
+            <span class="font-mono text-xs uppercase tracking-wider hidden sm:inline" style="color: var(--text-muted)">ANTIMATTER</span>
+            <span class="hidden sm:inline text-slate-600">/</span>
+            <strong id="crumb-current" class="font-display font-bold tracking-tight">Overview</strong>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <button onclick="navigateTo('compute')" class="flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-medium glass-panel hover:border-emerald-500/40 cursor-pointer">
+            <span id="status-dot" class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span id="header-compute-status" class="truncate max-w-[140px] sm:max-w-[220px]">Antimatter Ready</span>
+          </button>
+          <button onclick="openCommandModal()" class="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-xl text-xs glass-panel text-slate-400 hover:text-white cursor-pointer">
+            <span>Quick Jump</span>
+            <kbd class="font-mono text-[10px] px-1.5 py-0.5 rounded bg-white/10">⌘K</kbd>
+          </button>
+        </div>
+      </header>
+
+      <!-- PAGE 1: OVERVIEW / HOME -->
+      <section id="page-home" class="page-view active p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-8">
+        <!-- Welcome Row -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-violet-500/10 border border-violet-500/25 text-violet-300 mb-3">
+              <span>✦</span> UNIFIED MULTI-MODEL & GPU COMMAND CENTER
+            </div>
+            <h1 class="font-display text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              Make room for <span class="antimatter-gradient-text">Antimatter AI.</span>
+            </h1>
+            <p class="mt-2 text-sm sm:text-base max-w-2xl" style="color: var(--text-secondary)">
+              ChatGPT, Gemini, Claude, Grok, DeepSeek, Kimi & your own custom GPU clusters — orchestrated in one future-ready workspace.
+            </p>
+          </div>
+          <div class="glass-panel px-4 py-2.5 rounded-2xl flex items-center gap-2.5 self-start md:self-auto text-xs font-mono">
+            <span class="text-cyan-400">◷</span>
+            <span id="today-date">System Online</span>
+          </div>
+        </div>
+
+        <!-- Hero Card -->
+        <div class="glass-panel rounded-3xl p-6 sm:p-10 relative overflow-hidden">
+          <div class="absolute -right-20 -top-20 w-80 h-80 rounded-full bg-violet-600/20 blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-80 h-80 rounded-full bg-cyan-500/15 blur-3xl pointer-events-none"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="lg:col-span-7 space-y-5">
+              <div class="inline-flex items-center gap-2 text-xs font-mono text-cyan-300">
+                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span>
+                ZERO-FRICTION ORCHESTRATION + LOCAL GPU INFERENCE
+              </div>
+              <h2 class="font-display text-2xl sm:text-4xl font-extrabold leading-tight">
+                From “what if?”<br />
+                to <span class="italic font-light text-cyan-300">“deployed at light speed.”</span>
+              </h2>
+              <p class="text-sm sm:text-base leading-relaxed max-w-xl" style="color: var(--text-secondary)">
+                Plug in your API keys or attach your dedicated NVIDIA GPU / Ollama endpoint. Run Multi-AI Council debates or synthesize future-ready websites in seconds.
+              </p>
+              <div class="flex flex-wrap items-center gap-3 pt-1">
+                <button onclick="navigateTo('chat')" class="antimatter-btn px-5 py-3 rounded-xl font-semibold text-sm flex items-center gap-2 cursor-pointer">
+                  <span>◈</span> Open All-in-One AI Chat <span>↗</span>
+                </button>
+                <button onclick="navigateTo('compute')" class="glass-panel px-5 py-3 rounded-xl font-semibold text-sm flex items-center gap-2 hover:border-emerald-400/50 cursor-pointer">
+                  <span class="text-emerald-400">⚡</span> Connect GPU & API Keys
+                </button>
+                <button onclick="navigateTo('builder')" class="glass-panel px-5 py-3 rounded-xl font-semibold text-sm flex items-center gap-2 hover:border-fuchsia-400/50 cursor-pointer">
+                  <span class="text-fuchsia-400">▧</span> Build Antimatter Site
+                </button>
+              </div>
+              <div class="flex flex-wrap items-center gap-4 pt-2 text-xs" style="color: var(--text-muted)">
+                <span>✓ Client-side encrypted localStorage keys</span>
+                <span>✓ OpenAI / Gemini / Claude / Ollama compatible</span>
+              </div>
+            </div>
+
+            <!-- Cosmic Antimatter Core Visual -->
+            <div class="lg:col-span-5 flex items-center justify-center py-4">
+              <div class="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
+                <div class="absolute inset-0 rounded-full bg-gradient-to-tr from-violet-600/30 via-cyan-500/20 to-emerald-400/20 blur-2xl animate-pulse-glow"></div>
+                <div class="absolute inset-2 rounded-full border border-violet-500/30 border-dashed animate-spin-slow"></div>
+                <div class="absolute inset-8 rounded-full border border-cyan-400/30 animate-spin-reverse"></div>
+                <div class="absolute inset-14 rounded-full border border-emerald-400/25"></div>
+
+                <!-- Orbiting Badges -->
+                <div class="absolute -top-2 left-1/2 -translate-x-1/2 glass-panel px-3 py-1 rounded-full text-[11px] font-mono text-emerald-300 shadow-lg animate-float">
+                  GPT-4o · o3
+                </div>
+                <div class="absolute bottom-2 -left-3 glass-panel px-3 py-1 rounded-full text-[11px] font-mono text-cyan-300 shadow-lg animate-float" style="animation-delay: 1.5s">
+                  Gemini 2.5
+                </div>
+                <div class="absolute bottom-6 -right-4 glass-panel px-3 py-1 rounded-full text-[11px] font-mono text-violet-300 shadow-lg animate-float" style="animation-delay: 2.5s">
+                  H100 / Local GPU
+                </div>
+
+                <!-- Center Core -->
+                <div class="relative w-28 h-28 rounded-3xl bg-gradient-to-br from-violet-600 via-indigo-700 to-cyan-600 p-[2px] shadow-2xl shadow-violet-600/40 rotate-6 hover:rotate-0 transition-transform duration-500">
+                  <div class="w-full h-full rounded-[22px] bg-[#080a14] flex flex-col items-center justify-center text-center p-2">
+                    <span class="text-2xl antimatter-gradient-text font-bold">✦</span>
+                    <span class="font-display font-extrabold text-[11px] tracking-widest mt-1">ANTIMATTER</span>
+                    <span class="text-[9px] font-mono text-cyan-400">ENGINE</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Quick Action Grid -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <div class="text-[11px] font-mono uppercase tracking-widest text-violet-400">COMMAND MODULES</div>
+              <h2 class="font-display text-xl font-bold">Pick up where inspiration hits</h2>
+            </div>
+            <button onclick="navigateTo('tools')" class="text-xs font-semibold text-cyan-400 hover:text-cyan-300 cursor-pointer">Explore all 16+ AI tools →</button>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <button onclick="navigateTo('chat')" class="glass-panel rounded-2xl p-5 text-left group cursor-pointer">
+              <div class="w-10 h-10 rounded-xl bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 text-lg mb-3 group-hover:scale-110 transition-transform">◈</div>
+              <div class="font-display font-bold text-base">All-in-One AI Chat</div>
+              <p class="text-xs mt-1" style="color: var(--text-secondary)">Switch or compare ChatGPT, Gemini, Claude, DeepSeek & Grok side-by-side.</p>
+            </button>
+
+            <button onclick="navigateTo('compute')" class="glass-panel rounded-2xl p-5 text-left group cursor-pointer">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-lg mb-3 group-hover:scale-110 transition-transform">⚡</div>
+              <div class="font-display font-bold text-base">My GPU & API Vault</div>
+              <p class="text-xs mt-1" style="color: var(--text-secondary)">Attach your own NVIDIA GPU / Ollama nodes and manage provider API keys.</p>
+            </button>
+
+            <button onclick="navigateTo('builder')" class="glass-panel rounded-2xl p-5 text-left group cursor-pointer">
+              <div class="w-10 h-10 rounded-xl bg-fuchsia-500/15 border border-fuchsia-500/30 flex items-center justify-center text-fuchsia-400 text-lg mb-3 group-hover:scale-110 transition-transform">▧</div>
+              <div class="font-display font-bold text-base">Antimatter Web Builder</div>
+              <p class="text-xs mt-1" style="color: var(--text-secondary)">Generate responsive, future-ready HTML websites in one click & export.</p>
+            </button>
+
+            <button onclick="navigateTo('library')" class="glass-panel rounded-2xl p-5 text-left group cursor-pointer">
+              <div class="w-10 h-10 rounded-xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center text-violet-400 text-lg mb-3 group-hover:scale-110 transition-transform">▤</div>
+              <div class="font-display font-bold text-base">Saved Vault & Drafts</div>
+              <p class="text-xs mt-1" style="color: var(--text-secondary)">Re-open generated websites, code blueprints, and saved AI sessions.</p>
+            </button>
+          </div>
+        </div>
+
+        <!-- Supported Models Strip -->
+        <div>
+          <div class="text-[11px] font-mono uppercase tracking-widest text-cyan-400 mb-3">INTEGRATED AI ENGINES & LOCAL RUNTIMES</div>
+          <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3" id="home-models-strip">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 2: ALL-IN-ONE AI CHAT HUB -->
+      <section id="page-chat" class="page-view p-4 sm:p-6 max-w-7xl mx-auto w-full">
+        <div class="flex flex-col lg:flex-row gap-5 h-[calc(100vh-115px)] min-h-[600px]">
+          <!-- Main Chat Container -->
+          <div class="flex-1 glass-panel rounded-3xl flex flex-col overflow-hidden">
+            <!-- Chat Toolbar -->
+            <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-3" style="border-color: var(--border-subtle)">
+              <div class="flex items-center gap-2.5 flex-wrap">
+                <select id="provider-select" onchange="onProviderChange()" class="rounded-xl px-3 py-1.5 text-xs sm:text-sm font-semibold bg-white/5 border border-violet-500/30 focus:outline-none focus:border-cyan-400 cursor-pointer">
+                  <optgroup label="Cloud Frontier Models">
+                    <option value="openai">OpenAI — ChatGPT (GPT-4o)</option>
+                    <option value="gemini">Google — Gemini 2.5 Pro</option>
+                    <option value="claude">Anthropic — Claude 3.7 Sonnet</option>
+                    <option value="perplexity">Perplexity — Sonar Reasoning</option>
+                    <option value="grok">xAI — Grok 3</option>
+                    <option value="deepseek">DeepSeek — R1 / V3</option>
+                    <option value="kimi">Moonshot — Kimi k1.5</option>
+                    <option value="meta">Meta — Llama 3.3 70B</option>
+                  </optgroup>
+                  <optgroup label="Your Custom GPU Nodes" id="chat-gpu-optgroup">
+                    <option value="custom-gpu">My Custom GPU Node (Local/Cloud)</option>
+                  </optgroup>
+                </select>
+
+                <span id="chat-mode-badge" class="text-[11px] font-mono px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30">
+                  ● Antimatter Smart Sim (Add Key for Live)
+                </span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <!-- Multi-AI Council Toggle -->
+                <button id="council-toggle-btn" onclick="toggleCouncilMode()" class="px-3 py-1.5 rounded-xl text-xs font-semibold border border-white/15 bg-white/5 hover:border-cyan-400/50 flex items-center gap-1.5 transition-all cursor-pointer" title="Query 3 AI models simultaneously on one prompt">
+                  <span>⚡</span>
+                  <span>Multi-AI Council: <strong id="council-state-label">OFF</strong></span>
+                </button>
+                <button onclick="saveCurrentChatToLibrary()" class="px-3 py-1.5 rounded-xl text-xs font-medium glass-panel hover:text-cyan-300 cursor-pointer" title="Save conversation to Library">
+                  Save
+                </button>
+                <button onclick="startNewConversation()" class="px-3 py-1.5 rounded-xl text-xs font-medium glass-panel hover:text-rose-300 cursor-pointer">
+                  Clear
+                </button>
+              </div>
+            </div>
+
+            <!-- Multi-AI Council Selector Bar (Visible when Council Mode is ON) -->
+            <div id="council-bar" class="hidden px-4 py-2.5 bg-violet-950/40 border-b border-violet-500/25 flex flex-wrap items-center gap-2 text-xs">
+              <span class="font-mono text-violet-300 uppercase text-[11px] mr-1">Council Members:</span>
+              <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 cursor-pointer">
+                <input type="checkbox" class="council-member-cb accent-violet-500" value="openai" checked /> ChatGPT
+              </label>
+              <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 cursor-pointer">
+                <input type="checkbox" class="council-member-cb accent-cyan-500" value="gemini" checked /> Gemini
+              </label>
+              <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 cursor-pointer">
+                <input type="checkbox" class="council-member-cb accent-amber-500" value="claude" checked /> Claude
+              </label>
+              <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 cursor-pointer">
+                <input type="checkbox" class="council-member-cb accent-emerald-500" value="deepseek" /> DeepSeek
+              </label>
+              <label class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/5 border border-white/10 cursor-pointer">
+                <input type="checkbox" class="council-member-cb accent-emerald-400" value="custom-gpu" /> My GPU
+              </label>
+            </div>
+
+            <!-- Chat Thread -->
+            <div id="chat-thread" class="flex-1 overflow-y-auto p-4 sm:p-6 space-y-5">
+              <!-- Welcome State -->
+              <div id="chat-welcome" class="max-w-2xl mx-auto text-center py-8 space-y-5">
+                <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-violet-600/30 to-cyan-500/30 border border-violet-400/30 flex items-center justify-center text-2xl">
+                  ✦
+                </div>
+                <div>
+                  <h2 class="font-display text-2xl font-extrabold">One Prompt. Every Frontier AI + Your GPU.</h2>
+                  <p class="text-sm mt-1.5" style="color: var(--text-secondary)">
+                    Ask anything below, switch models anytime, or activate <strong>Multi-AI Council</strong> to compare answers side-by-side.
+                  </p>
+                </div>
+                <div class="flex flex-wrap justify-center gap-2 pt-2">
+                  <button onclick="sendQuickPrompt('Architect a future-ready SaaS landing page with Antimatter AI aesthetics')" class="glass-panel px-3.5 py-2 rounded-xl text-xs hover:border-cyan-400/50 cursor-pointer">
+                    ✦ Architect a future-ready SaaS app
+                  </button>
+                  <button onclick="sendQuickPrompt('Compare running Llama 3 70B on my own GPU vs cloud APIs for enterprise privacy')" class="glass-panel px-3.5 py-2 rounded-xl text-xs hover:border-emerald-400/50 cursor-pointer">
+                    ⚡ Local GPU vs Cloud API strategy
+                  </button>
+                  <button onclick="sendQuickPrompt('Write a clean Python FastAPI microservice with async streaming')" class="glass-panel px-3.5 py-2 rounded-xl text-xs hover:border-violet-400/50 cursor-pointer">
+                    ◈ FastAPI async streaming code
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Composer Form -->
+            <form id="chat-form" onsubmit="handleChatSubmit(event)" class="p-3 sm:p-4 border-t" style="border-color: var(--border-subtle)">
+              <div class="glass-panel rounded-2xl p-2 flex items-end gap-2 focus-within:border-cyan-400/60">
+                <textarea id="chat-input" rows="1" placeholder="Ask ChatGPT, Gemini, Claude, or your GPU node…" class="w-full bg-transparent px-3 py-2 text-sm resize-none focus:outline-none max-h-36" onkeydown="handleChatKeydown(event)"></textarea>
+                <button type="submit" id="chat-send-btn" class="antimatter-btn px-4 py-2.5 rounded-xl font-semibold text-xs sm:text-sm shrink-0 cursor-pointer">
+                  Send ↑
+                </button>
+              </div>
+              <div class="flex items-center justify-between px-2 pt-2 text-[11px]" style="color: var(--text-muted)">
+                <span>Enter to send · Shift+Enter for new line</span>
+                <button type="button" onclick="navigateTo('compute')" class="text-cyan-400 hover:underline cursor-pointer">Configure API Keys / GPU →</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Right Quick Compute Sidebar -->
+          <aside class="w-full lg:w-72 glass-panel rounded-3xl p-5 flex flex-col justify-between space-y-4 shrink-0">
+            <div class="space-y-4">
+              <div class="flex items-center justify-between">
+                <span class="text-xs font-mono uppercase tracking-wider text-emerald-400">COMPUTE ROUTING</span>
+                <button onclick="navigateTo('compute')" class="text-xs text-cyan-400 hover:underline cursor-pointer">Edit</button>
+              </div>
+
+              <div class="p-3.5 rounded-2xl bg-white/5 border border-white/10 space-y-1.5">
+                <div class="text-xs font-semibold" id="chat-side-gpu-title">Default Inference</div>
+                <div class="text-[11px] font-mono text-cyan-300" id="chat-side-gpu-endpoint">Browser / Cloud API</div>
+                <div class="text-[11px]" style="color: var(--text-muted)" id="chat-side-gpu-vram">Add your GPU URL in GPU & API Keys</div>
+              </div>
+
+              <div class="space-y-2">
+                <div class="text-[11px] font-mono uppercase tracking-wider" style="color: var(--text-muted)">CONNECTED API KEYS</div>
+                <div id="chat-side-keys-status" class="space-y-1.5 text-xs">
+                  <!-- Populated via JS -->
+                </div>
+              </div>
+            </div>
+
+            <div class="p-4 rounded-2xl bg-gradient-to-br from-violet-600/20 to-cyan-500/15 border border-violet-500/25 space-y-2.5">
+              <div class="text-xs font-bold">Turn chat into a live website</div>
+              <p class="text-[11px]" style="color: var(--text-secondary)">Jump straight to the Antimatter Web Builder to generate HTML/CSS in one click.</p>
+              <button onclick="navigateTo('builder')" class="w-full py-2 rounded-xl bg-white/10 hover:bg-white/15 text-xs font-semibold transition-colors cursor-pointer">
+                Open Web Builder →
+              </button>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- PAGE 3: GPU & API KEYS COMMAND CENTER -->
+      <section id="page-compute" class="page-view p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 mb-2">
+              <span>⚡</span> SOVEREIGN COMPUTE & KEY VAULT
+            </div>
+            <h1 class="font-display text-2xl sm:text-4xl font-extrabold">My GPU Nodes & <span class="antimatter-gradient-text">API Keys</span></h1>
+            <p class="text-sm mt-1 max-w-2xl" style="color: var(--text-secondary)">
+              Your credentials stay 100% locally in your browser (<code class="font-mono text-xs">localStorage</code>) and talk directly to provider APIs or your private GPU cluster.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="exportConfigBackup()" class="glass-panel px-4 py-2.5 rounded-xl text-xs font-semibold hover:border-cyan-400/50 cursor-pointer">
+              ↓ Export Vault JSON
+            </button>
+            <button onclick="saveAllComputeSettings()" class="antimatter-btn px-5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold cursor-pointer">
+              ✓ Save All Keys & GPU Config
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Left 7 Cols: API Keys Vault -->
+          <div class="lg:col-span-7 glass-panel rounded-3xl p-6 space-y-5">
+            <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-subtle)">
+              <div>
+                <h2 class="font-display text-lg font-bold">Frontier AI Provider API Keys</h2>
+                <p class="text-xs" style="color: var(--text-muted)">Enter keys for any providers you want to power live in All-in-One Chat & Builder.</p>
+              </div>
+              <span id="vault-active-count" class="text-xs font-mono px-2.5 py-1 rounded-full bg-violet-500/15 text-violet-300 border border-violet-500/30">0 Configured</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="api-keys-form-grid">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+
+          <!-- Right 5 Cols: Custom GPU & Local Node Manager -->
+          <div class="lg:col-span-5 space-y-6">
+            <div class="glass-panel rounded-3xl p-6 space-y-4">
+              <div class="flex items-center justify-between border-b pb-3" style="border-color: var(--border-subtle)">
+                <div>
+                  <h2 class="font-display text-lg font-bold flex items-center gap-2">
+                    <span class="text-emerald-400">⚡</span> Add / Configure My GPU
+                  </h2>
+                  <p class="text-xs" style="color: var(--text-muted)">Connect Ollama, vLLM, LM Studio, RunPod, or H100 nodes.</p>
+                </div>
+              </div>
+
+              <div class="space-y-3 text-xs">
+                <div>
+                  <label class="block font-semibold mb-1">GPU Node Name & Hardware</label>
+                  <input id="gpu-name-input" type="text" placeholder="e.g. Rig-01 · Dual RTX 4090 (48GB VRAM)" class="w-full rounded-xl px-3.5 py-2.5 bg-white/5 border border-white/10 focus:border-emerald-400 focus:outline-none" />
+                </div>
+
+                <div>
+                  <label class="block font-semibold mb-1">OpenAI-Compatible Base Endpoint URL</label>
+                  <input id="gpu-url-input" type="url" placeholder="http://localhost:11434/v1/chat/completions" class="w-full rounded-xl px-3.5 py-2.5 font-mono bg-white/5 border border-white/10 focus:border-emerald-400 focus:outline-none" />
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block font-semibold mb-1">Default Model ID</label>
+                    <input id="gpu-model-input" type="text" placeholder="llama3.3:70b / qwen2.5-coder" class="w-full rounded-xl px-3 py-2.5 font-mono bg-white/5 border border-white/10 focus:border-emerald-400 focus:outline-none" />
+                  </div>
+                  <div>
+                    <label class="block font-semibold mb-1">VRAM / Cluster Spec</label>
+                    <input id="gpu-vram-input" type="text" placeholder="80GB H100 / 24GB 4090" class="w-full rounded-xl px-3 py-2.5 font-mono bg-white/5 border border-white/10 focus:border-emerald-400 focus:outline-none" />
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block font-semibold mb-1">Node Bearer Token (Optional)</label>
+                  <input id="gpu-token-input" type="password" placeholder="sk-local-gpu-token (leave blank for Ollama)" class="w-full rounded-xl px-3 py-2.5 font-mono bg-white/5 border border-white/10 focus:border-emerald-400 focus:outline-none" />
+                </div>
+
+                <div class="flex items-center gap-2 pt-2">
+                  <button type="button" onclick="addOrUpdateGpuNode()" class="flex-1 antimatter-btn py-2.5 px-4 rounded-xl font-semibold text-xs cursor-pointer">
+                    ＋ Save & Activate GPU Node
+                  </button>
+                  <button type="button" onclick="pingActiveGpu()" class="glass-panel py-2.5 px-3.5 rounded-xl font-semibold text-xs hover:border-emerald-400/50 cursor-pointer">
+                    Ping Node
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Saved GPU Nodes List -->
+            <div class="glass-panel rounded-3xl p-6 space-y-3">
+              <div class="text-xs font-mono uppercase tracking-wider text-emerald-400">REGISTERED GPU CLUSTER NODES</div>
+              <div id="gpu-nodes-list" class="space-y-2.5">
+                <!-- Populated by JS -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 4: ANTIMATTER WEBSITE BUILDER -->
+      <section id="page-builder" class="page-view p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-fuchsia-500/10 border border-fuchsia-500/30 text-fuchsia-300 mb-2">
+              <span>▧</span> ANTIMATTER WEB SYNTHESIZER
+            </div>
+            <h1 class="font-display text-2xl sm:text-4xl font-extrabold">One Idea. One Click. <span class="antimatter-gradient-text">Future-Ready Website.</span></h1>
+            <p class="text-sm mt-1" style="color: var(--text-secondary)">
+              Synthesize responsive landing pages using the Antimatter Engine or your connected AI API / GPU node.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+          <!-- Controls Form -->
+          <form id="builder-form" onsubmit="handleBuildWebsite(event)" class="lg:col-span-5 glass-panel rounded-3xl p-6 space-y-4 self-start">
+            <div>
+              <label for="site-name" class="block text-xs font-semibold mb-1.5">Project / Brand Name</label>
+              <input id="site-name" type="text" placeholder="e.g. Antimatter Quantum Labs" maxlength="54" class="w-full rounded-xl px-3.5 py-2.5 text-sm bg-white/5 border border-white/10 focus:border-violet-400 focus:outline-none" required />
+            </div>
+
+            <div>
+              <label for="site-description" class="block text-xs font-semibold mb-1.5">Describe your vision & key features</label>
+              <textarea id="site-description" rows="4" placeholder="A next-generation decentralized AI compute network powering autonomous agents and zero-latency inference…" maxlength="420" class="w-full rounded-xl px-3.5 py-2.5 text-sm bg-white/5 border border-white/10 focus:border-violet-400 focus:outline-none" required></textarea>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold mb-2">Design Aesthetic</label>
+              <div class="grid grid-cols-2 gap-2.5">
+                <label class="builder-style-card p-3 rounded-xl border border-violet-500/50 bg-violet-500/15 cursor-pointer flex items-center gap-2.5">
+                  <input type="radio" name="style" value="antimatter" checked class="accent-violet-500" />
+                  <div>
+                    <div class="text-xs font-bold">Antimatter Cyber</div>
+                    <div class="text-[10px] text-slate-400">Obsidian, neon & glass</div>
+                  </div>
+                </label>
+
+                <label class="builder-style-card p-3 rounded-xl border border-white/10 bg-white/5 cursor-pointer flex items-center gap-2.5">
+                  <input type="radio" name="style" value="bold" class="accent-cyan-500" />
+                  <div>
+                    <div class="text-xs font-bold">Bold & Modern</div>
+                    <div class="text-[10px] text-slate-400">Crisp SaaS & gradient</div>
+                  </div>
+                </label>
+
+                <label class="builder-style-card p-3 rounded-xl border border-white/10 bg-white/5 cursor-pointer flex items-center gap-2.5">
+                  <input type="radio" name="style" value="warm" class="accent-amber-500" />
+                  <div>
+                    <div class="text-xs font-bold">Warm & Human</div>
+                    <div class="text-[10px] text-slate-400">Editorial & welcoming</div>
+                  </div>
+                </label>
+
+                <label class="builder-style-card p-3 rounded-xl border border-white/10 bg-white/5 cursor-pointer flex items-center gap-2.5">
+                  <input type="radio" name="style" value="calm" class="accent-emerald-500" />
+                  <div>
+                    <div class="text-xs font-bold">Calm & Minimal</div>
+                    <div class="text-[10px] text-slate-400">Ultra-clean Swiss grid</div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-semibold mb-1.5">Generation Engine</label>
+              <select id="builder-engine" class="w-full rounded-xl px-3.5 py-2.5 text-xs font-semibold bg-white/5 border border-white/10 focus:border-cyan-400 focus:outline-none">
+                <option value="instant">Antimatter Instant Engine (Zero-Latency Local)</option>
+                <option value="ai-live">Connected AI API / Active GPU Node</option>
+              </select>
+            </div>
+
+            <button type="submit" id="builder-submit-btn" class="w-full antimatter-btn py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 cursor-pointer">
+              <span>✦</span> Generate Future-Ready Website <span>→</span>
+            </button>
+          </form>
+
+          <!-- Live Preview & Code Window -->
+          <div class="lg:col-span-7 glass-panel rounded-3xl overflow-hidden flex flex-col min-h-[540px]">
+            <div class="px-4 py-3 border-b flex flex-wrap items-center justify-between gap-2" style="border-color: var(--border-subtle)">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-rose-500/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-amber-400/80"></span>
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400/80"></span>
+                <span class="ml-2 text-[11px] font-mono uppercase tracking-wider" style="color: var(--text-muted)">LIVE SANDBOX</span>
+              </div>
+
+              <div class="flex items-center gap-2">
+                <div class="inline-flex rounded-lg bg-white/5 p-0.5 border border-white/10 text-xs">
+                  <button type="button" id="tab-preview-btn" onclick="switchBuilderView('preview')" class="px-2.5 py-1 rounded-md bg-violet-600 text-white font-semibold cursor-pointer">Preview</button>
+                  <button type="button" id="tab-code-btn" onclick="switchBuilderView('code')" class="px-2.5 py-1 rounded-md text-slate-400 hover:text-white cursor-pointer">HTML Code</button>
+                </div>
+                <button type="button" id="save-site-btn" onclick="saveGeneratedSiteToLibrary()" disabled class="px-3 py-1.5 rounded-lg text-xs font-semibold glass-panel disabled:opacity-40 hover:border-violet-400/50 cursor-pointer">
+                  Save to Library
+                </button>
+                <button type="button" id="download-site-btn" onclick="downloadGeneratedSite()" disabled class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 disabled:opacity-40 hover:bg-emerald-500/30 cursor-pointer">
+                  ↓ Download .HTML
+                </button>
+              </div>
+            </div>
+
+            <div class="relative flex-1 bg-[#05060b]">
+              <iframe id="site-preview" title="Website live preview" class="w-full h-full min-h-[480px] border-0"></iframe>
+              <textarea id="site-code-view" readonly class="hidden w-full h-full min-h-[480px] p-4 bg-[#05060b] text-cyan-200 font-mono text-xs focus:outline-none resize-none"></textarea>
+
+              <div id="preview-empty" class="absolute inset-0 flex flex-col items-center justify-center text-center p-6 bg-[#070913]/95">
+                <div class="w-14 h-14 rounded-2xl bg-violet-500/15 border border-violet-500/30 flex items-center justify-center text-2xl mb-3">✧</div>
+                <h3 class="font-display font-bold text-lg">Your Antimatter draft lives here</h3>
+                <p class="text-xs max-w-sm mt-1" style="color: var(--text-secondary)">
+                  Enter your project name and vision on the left, then click Generate to preview and export a standalone responsive website.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PAGE 5: EXPLORE AI TOOLS DIRECTORY -->
+      <section id="page-tools" class="page-view p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-amber-500/10 border border-amber-500/30 text-amber-300 mb-2">
+              <span>✳</span> CURATED AI ECOSYSTEM
+            </div>
+            <h1 class="font-display text-2xl sm:text-4xl font-extrabold">Explore <span class="antimatter-gradient-text">AI Tools & Runtimes</span></h1>
+            <p class="text-sm mt-1" style="color: var(--text-secondary)">
+              Launch external AI platforms or pin your favorites directly to the sidebar.
+            </p>
+          </div>
+        </div>
+
+        <!-- Search & Filter Pills -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3">
+          <div class="relative flex-1 max-w-md">
+            <span class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm">⌕</span>
+            <input id="tool-search" oninput="renderToolsDirectory()" type="search" placeholder="Search ChatGPT, Claude, Ollama, Midjourney, Cursor…" class="w-full pl-9 pr-4 py-2.5 rounded-xl text-sm glass-panel focus:outline-none focus:border-cyan-400" />
+          </div>
+          <div class="flex flex-wrap gap-1.5" id="tool-category-pills">
+            <button onclick="setToolCategory('All')" class="tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-violet-600 text-white cursor-pointer" data-cat="All">All</button>
+            <button onclick="setToolCategory('Chat')" class="tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold glass-panel cursor-pointer" data-cat="Chat">Chat & LLMs</button>
+            <button onclick="setToolCategory('Code')" class="tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold glass-panel cursor-pointer" data-cat="Code">Code & Dev</button>
+            <button onclick="setToolCategory('Research')" class="tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold glass-panel cursor-pointer" data-cat="Research">Research</button>
+            <button onclick="setToolCategory('Media')" class="tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold glass-panel cursor-pointer" data-cat="Media">Image & Video</button>
+            <button onclick="setToolCategory('GPU')" class="tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold glass-panel cursor-pointer" data-cat="GPU">Local GPU</button>
+          </div>
+        </div>
+
+        <div id="tools-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+
+      <!-- PAGE 6: MY LIBRARY -->
+      <section id="page-library" class="page-view p-4 sm:p-8 max-w-7xl mx-auto w-full space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-[11px] font-mono uppercase tracking-wider bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 mb-2">
+              <span>▤</span> LOCAL PERSISTENT VAULT
+            </div>
+            <h1 class="font-display text-2xl sm:text-4xl font-extrabold">My Saved <span class="antimatter-gradient-text">Library</span></h1>
+            <p class="text-sm mt-1" style="color: var(--text-secondary)">
+              All website drafts and AI research threads saved on this device.
+            </p>
+          </div>
+          <button onclick="navigateTo('builder')" class="antimatter-btn px-4 py-2.5 rounded-xl text-xs font-semibold self-start sm:self-auto cursor-pointer">
+            ＋ Create New Website Draft
+          </button>
+        </div>
+
+        <div id="library-content" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <!-- Populated by JS -->
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- COMMAND PALETTE MODAL (CMD+K) -->
+  <div id="cmd-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-black/70 backdrop-blur-md" onclick="if(event.target===this) closeCommandModal()">
+    <div class="glass-panel w-full max-w-lg rounded-2xl overflow-hidden shadow-2xl border border-violet-500/40">
+      <div class="p-3.5 border-b flex items-center gap-3" style="border-color: var(--border-subtle)">
+        <span class="text-cyan-400">⌘</span>
+        <input id="cmd-search-input" oninput="filterCommandItems()" type="text" placeholder="Jump to AI Chat, GPU Vault, Web Builder, or a provider…" class="w-full bg-transparent text-sm focus:outline-none" />
+        <button onclick="closeCommandModal()" class="text-xs font-mono px-2 py-1 rounded bg-white/10">ESC</button>
+      </div>
+      <div id="cmd-list" class="max-h-72 overflow-y-auto p-2 space-y-1 text-sm">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" role="status" class="fixed bottom-5 right-5 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 glass-panel px-4 py-3 rounded-2xl border border-cyan-400/40 shadow-2xl flex items-center gap-2.5 text-xs sm:text-sm font-medium">
+    <span class="text-cyan-400">✦</span>
+    <span id="toast-msg">Ready</span>
+  </div>
+
+  <script>
+    /* ============================================================================
+       STATE & CONFIGURATION
+       ============================================================================ */
+    const STORAGE_KEYS = {
+      API_KEYS: 'nl_antimatter_api_keys_v1',
+      GPU_NODES: 'nl_antimatter_gpu_nodes_v1',
+      ACTIVE_GPU: 'nl_antimatter_active_gpu_v1',
+      LIBRARY: 'nl_antimatter_library_v1',
+      PINNED: 'nl_antimatter_pinned_v1',
+      THEME: 'nl_antimatter_theme_v1'
+    };
+
+    const AI_PROVIDERS = [
+      { id: 'openai', name: 'OpenAI (ChatGPT)', model: 'gpt-4o', badge: 'GPT-4o', color: 'text-emerald-400', placeholder: 'sk-proj-...' },
+      { id: 'gemini', name: 'Google Gemini', model: 'gemini-2.5-flash', badge: '2.5 Pro/Flash', color: 'text-cyan-400', placeholder: 'AIzaSy...' },
+      { id: 'claude', name: 'Anthropic Claude', model: 'claude-3-7-sonnet-20250219', badge: 'Sonnet 3.7', color: 'text-amber-400', placeholder: 'sk-ant-...' },
+      { id: 'perplexity', name: 'Perplexity Sonar', model: 'sonar-pro', badge: 'Web Search', color: 'text-teal-400', placeholder: 'pplx-...' },
+      { id: 'grok', name: 'xAI Grok', model: 'grok-2-latest', badge: 'Grok 3', color: 'text-slate-200', placeholder: 'xai-...' },
+      { id: 'deepseek', name: 'DeepSeek', model: 'deepseek-chat', badge: 'R1 / V3', color: 'text-blue-400', placeholder: 'sk-...' },
+      { id: 'kimi', name: 'Moonshot Kimi', model: 'moonshot-v1-8k', badge: 'Kimi k1.5', color: 'text-violet-400', placeholder: 'sk-...' },
+      { id: 'openrouter', name: 'OpenRouter (All Models)', model: 'meta-llama/llama-3.3-70b-instruct', badge: '100+ LLMs', color: 'text-fuchsia-400', placeholder: 'sk-or-...' }
+    ];
+
+    const TOOLS_DIRECTORY = [
+      { id: 'chatgpt', name: 'ChatGPT', category: 'Chat', url: 'https://chatgpt.com', desc: 'OpenAI flagship reasoning, coding & multimodal workspace.', tag: 'GPT-4o / o3' },
+      { id: 'gemini', name: 'Google Gemini', category: 'Chat', url: 'https://gemini.google.com', desc: 'Deep Google ecosystem research, 1M+ context & multimodal AI.', tag: 'Gemini 2.5' },
+      { id: 'claude', name: 'Claude', category: 'Chat', url: 'https://claude.ai', desc: 'Anthropic frontier model for nuanced writing, artifacts & code.', tag: 'Claude 3.7' },
+      { id: 'perplexity', name: 'Perplexity AI', category: 'Research', url: 'https://www.perplexity.ai', desc: 'Real-time cited web answer engine and deep research assistant.', tag: 'Live Citations' },
+      { id: 'deepseek', name: 'DeepSeek', category: 'Code', url: 'https://chat.deepseek.com', desc: 'Open-weights reasoning powerhouse for math, logic & algorithms.', tag: 'DeepSeek R1' },
+      { id: 'grok', name: 'xAI Grok', category: 'Chat', url: 'https://grok.com', desc: 'Real-time social pulse & high-speed reasoning assistant.', tag: 'Grok 3' },
+      { id: 'kimi', name: 'Kimi AI', category: 'Research', url: 'https://kimi.moonshot.cn', desc: 'Ultra-long context document analyzer and synthesis assistant.', tag: 'Long Context' },
+      { id: 'cursor', name: 'Cursor AI', category: 'Code', url: 'https://cursor.com', desc: 'AI-first code editor built for rapid full-stack engineering.', tag: 'AI IDE' },
+      { id: 'v0', name: 'Vercel v0', category: 'Code', url: 'https://v0.dev', desc: 'Generative UI system for React, Tailwind & Next.js components.', tag: 'UI Gen' },
+      { id: 'midjourney', name: 'Midjourney', category: 'Media', url: 'https://www.midjourney.com', desc: 'Photorealistic & artistic generative image synthesis.', tag: 'Image' },
+      { id: 'runway', name: 'Runway Gen-3', category: 'Media', url: 'https://runwayml.com', desc: 'Cinematic AI video generation and visual effects studio.', tag: 'Video' },
+      { id: 'elevenlabs', name: 'ElevenLabs', category: 'Media', url: 'https://elevenlabs.io', desc: 'Ultra-realistic AI voice synthesis and dubbing studio.', tag: 'Voice' },
+      { id: 'ollama', name: 'Ollama Local GPU', category: 'GPU', url: 'https://ollama.com', desc: 'Run Llama 3, DeepSeek & Qwen locally on your own NVIDIA/Mac GPU.', tag: 'Local Runtime' },
+      { id: 'huggingface', name: 'Hugging Face', category: 'GPU', url: 'https://huggingface.co', desc: 'Open-source model hub, datasets, and inference endpoints.', tag: 'Open Weights' },
+      { id: 'runpod', name: 'RunPod GPU Cloud', category: 'GPU', url: 'https://www.runpod.io', desc: 'On-demand H100 & RTX 4090 cloud GPU pods for vLLM.', tag: 'Cloud GPU' },
+      { id: 'openrouter', name: 'OpenRouter', category: 'Code', url: 'https://openrouter.ai', desc: 'Unified API gateway to 200+ frontier and open-source models.', tag: 'Unified API' }
+    ];
+
+    let appState = {
+      apiKeys: {},
+      gpuNodes: [],
+      activeGpuId: null,
+      library: [],
+      pinnedToolIds: ['chatgpt', 'gemini', 'claude', 'ollama'],
+      councilMode: false,
+      chatHistory: [],
+      currentGeneratedHtml: '',
+      currentGeneratedTitle: '',
+      selectedToolCategory: 'All'
+    };
+
+    /* ============================================================================
+       INITIALIZATION
+       ============================================================================ */
+    window.addEventListener('DOMContentLoaded', () => {
+      loadPersistedState();
+      updateDateDisplay();
+      renderPinnedTools();
+      renderHomeModelsStrip();
+      renderApiKeysForm();
+      renderGpuNodes();
+      renderToolsDirectory();
+      renderLibrary();
+      updateComputeIndicators();
+      onProviderChange();
+
+      // Keyboard shortcut Cmd/Ctrl + K
+      document.addEventListener('keydown', (e) => {
+        if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+          e.preventDefault();
+          openCommandModal();
+        } else if (e.key === 'Escape') {
+          closeCommandModal();
+        }
+      });
+    });
+
+    function loadPersistedState() {
+      try {
+        const keys = localStorage.getItem(STORAGE_KEYS.API_KEYS);
+        if (keys) appState.apiKeys = JSON.parse(keys);
+
+        const gpus = localStorage.getItem(STORAGE_KEYS.GPU_NODES);
+        if (gpus) {
+          appState.gpuNodes = JSON.parse(gpus);
+        } else {
+          // Provide a helpful pre-configured template node for Ollama
+          appState.gpuNodes = [
+            {
+              id: 'gpu-local-ollama',
+              name: 'Local Workstation GPU (Ollama)',
+              url: 'http://localhost:11434/v1/chat/completions',
+              model: 'llama3.2',
+              vram: 'Local GPU / Apple Silicon',
+              token: ''
+            }
+          ];
+        }
+
+        const activeGpu = localStorage.getItem(STORAGE_KEYS.ACTIVE_GPU);
+        appState.activeGpuId = activeGpu || (appState.gpuNodes[0] ? appState.gpuNodes[0].id : null);
+
+        const lib = localStorage.getItem(STORAGE_KEYS.LIBRARY);
+        if (lib) appState.library = JSON.parse(lib);
+
+        const pinned = localStorage.getItem(STORAGE_KEYS.PINNED);
+        if (pinned) appState.pinnedToolIds = JSON.parse(pinned);
+
+        const theme = localStorage.getItem(STORAGE_KEYS.THEME);
+        if (theme === 'light') {
+          document.documentElement.classList.add('light-theme');
+          document.getElementById('theme-toggle-btn').textContent = '☾';
+        }
+      } catch (err) {
+        console.error('State load error:', err);
+      }
+    }
+
+    function updateDateDisplay() {
+      const el = document.getElementById('today-date');
+      if (!el) return;
+      const now = new Date();
+      el.textContent = now.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    /* ============================================================================
+       NAVIGATION & THEME
+       ============================================================================ */
+    function navigateTo(pageId) {
+      const titles = {
+        home: 'Overview',
+        chat: 'All-in-One AI Chat',
+        compute: 'GPU & API Keys Vault',
+        builder: 'Antimatter Website Builder',
+        tools: 'Explore AI Tools',
+        library: 'My Library'
+      };
+
+      document.querySelectorAll('.page-view').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById(`page-${pageId}`);
+      if (target) target.classList.add('active');
+
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.page === pageId);
+      });
+
+      const crumb = document.getElementById('crumb-current');
+      if (crumb) crumb.textContent = titles[pageId] || 'Workspace';
+
+      toggleSidebar(false);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleSidebar(open) {
+      const sidebar = document.getElementById('sidebar');
+      const backdrop = document.getElementById('sidebar-backdrop');
+      if (open) {
+        sidebar.classList.remove('-translate-x-full');
+        backdrop.classList.remove('hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        backdrop.classList.add('hidden');
+      }
+    }
+
+    function toggleTheme() {
+      const isLight = document.documentElement.classList.toggle('light-theme');
+      localStorage.setItem(STORAGE_KEYS.THEME, isLight ? 'light' : 'dark');
+      document.getElementById('theme-toggle-btn').textContent = isLight ? '☾' : '☀';
+      showToast(isLight ? 'Switched to Light Glass theme' : 'Switched to Antimatter Dark theme');
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const msg = document.getElementById('toast-msg');
+      msg.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      clearTimeout(window._toastTimer);
+      window._toastTimer = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3200);
+    }
+
+    /* ============================================================================
+       GPU & API KEYS VAULT LOGIC
+       ============================================================================ */
+    function renderApiKeysForm() {
+      const container = document.getElementById('api-keys-form-grid');
+      if (!container) return;
+
+      container.innerHTML = AI_PROVIDERS.map(p => {
+        const val = appState.apiKeys[p.id] || '';
+        const isConnected = val.trim().length > 4;
+        return `
+          <div class="p-3.5 rounded-2xl bg-white/5 border ${isConnected ? 'border-emerald-500/40' : 'border-white/10'} space-y-1.5">
+            <div class="flex items-center justify-between">
+              <label for="key-input-${p.id}" class="text-xs font-bold ${p.color}">${p.name}</label>
+              <span class="text-[10px] font-mono ${isConnected ? 'text-emerald-400' : 'text-slate-500'}">
+                ${isConnected ? '● LIVE' : '○ NOT SET'}
+              </span>
+            </div>
+            <input
+              id="key-input-${p.id}"
+              type="password"
+              value="${escapeHtml(val)}"
+              placeholder="${p.placeholder}"
+              class="w-full rounded-xl px-3 py-2 text-xs font-mono bg-black/30 border border-white/10 focus:border-cyan-400 focus:outline-none"
+            />
+            <div class="text-[10px] font-mono" style="color: var(--text-muted)">Default: ${p.model}</div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function saveAllComputeSettings() {
+      AI_PROVIDERS.forEach(p => {
+        const input = document.getElementById(`key-input-${p.id}`);
+        if (input) {
+          appState.apiKeys[p.id] = input.value.trim();
+        }
+      });
+      localStorage.setItem(STORAGE_KEYS.API_KEYS, JSON.stringify(appState.apiKeys));
+      renderApiKeysForm();
+      updateComputeIndicators();
+      onProviderChange();
+      showToast('API Keys & Compute Vault saved locally!');
+    }
+
+    function addOrUpdateGpuNode() {
+      const name = document.getElementById('gpu-name-input').value.trim();
+      const url = document.getElementById('gpu-url-input').value.trim();
+      const model = document.getElementById('gpu-model-input').value.trim() || 'llama3.2';
+      const vram = document.getElementById('gpu-vram-input').value.trim() || 'Dedicated GPU';
+      const token = document.getElementById('gpu-token-input').value.trim();
+
+      if (!name || !url) {
+        showToast('Please enter both GPU Node Name and Endpoint URL.');
+        return;
+      }
+
+      const newNode = {
+        id: 'gpu-' + Date.now(),
+        name,
+        url,
+        model,
+        vram,
+        token
+      };
+
+      appState.gpuNodes.unshift(newNode);
+      appState.activeGpuId = newNode.id;
+
+      localStorage.setItem(STORAGE_KEYS.GPU_NODES, JSON.stringify(appState.gpuNodes));
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_GPU, appState.activeGpuId);
+
+      // Clear inputs
+      document.getElementById('gpu-name-input').value = '';
+      document.getElementById('gpu-url-input').value = '';
+      document.getElementById('gpu-model-input').value = '';
+      document.getElementById('gpu-vram-input').value = '';
+      document.getElementById('gpu-token-input').value = '';
+
+      renderGpuNodes();
+      updateComputeIndicators();
+      onProviderChange();
+      showToast(`Activated GPU Node: ${name}`);
+    }
+
+    function selectActiveGpu(id) {
+      appState.activeGpuId = id;
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_GPU, id);
+      renderGpuNodes();
+      updateComputeIndicators();
+      onProviderChange();
+      const node = getActiveGpuNode();
+      if (node) showToast(`Routed compute to ${node.name}`);
+    }
+
+    function deleteGpuNode(id) {
+      appState.gpuNodes = appState.gpuNodes.filter(n => n.id !== id);
+      if (appState.activeGpuId === id) {
+        appState.activeGpuId = appState.gpuNodes[0] ? appState.gpuNodes[0].id : null;
+      }
+      localStorage.setItem(STORAGE_KEYS.GPU_NODES, JSON.stringify(appState.gpuNodes));
+      localStorage.setItem(STORAGE_KEYS.ACTIVE_GPU, appState.activeGpuId || '');
+      renderGpuNodes();
+      updateComputeIndicators();
+      showToast('Removed GPU node');
+    }
+
+    function getActiveGpuNode() {
+      return appState.gpuNodes.find(n => n.id === appState.activeGpuId) || appState.gpuNodes[0] || null;
+    }
+
+    function renderGpuNodes() {
+      const container = document.getElementById('gpu-nodes-list');
+      const optgroup = document.getElementById('chat-gpu-optgroup');
+      if (!container) return;
+
+      if (appState.gpuNodes.length === 0) {
+        container.innerHTML = `<div class="text-xs text-slate-400 p-3 rounded-xl bg-white/5">No GPU nodes added yet. Add your local Ollama or cloud H100 endpoint above.</div>`;
+      } else {
+        container.innerHTML = appState.gpuNodes.map(node => {
+          const isActive = node.id === appState.activeGpuId;
+          return `
+            <div class="p-3.5 rounded-2xl border ${isActive ? 'border-emerald-400/50 bg-emerald-500/10' : 'border-white/10 bg-white/5'} flex items-center justify-between gap-2">
+              <div class="min-w-0">
+                <div class="flex items-center gap-2">
+                  <span class="text-xs font-bold truncate">${escapeHtml(node.name)}</span>
+                  ${isActive ? '<span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ACTIVE</span>' : ''}
+                </div>
+                <div class="text-[11px] font-mono text-cyan-300 truncate mt-0.5">${escapeHtml(node.model)} · ${escapeHtml(node.vram)}</div>
+                <div class="text-[10px] font-mono truncate opacity-60">${escapeHtml(node.url)}</div>
+              </div>
+              <div class="flex items-center gap-1.5 shrink-0">
+                ${!isActive ? `<button onclick="selectActiveGpu('${node.id}')" class="px-2.5 py-1 rounded-lg text-[11px] font-semibold bg-white/10 hover:bg-emerald-500/20 hover:text-emerald-300 cursor-pointer">Use</button>` : ''}
+                <button onclick="deleteGpuNode('${node.id}')" class="p-1.5 rounded-lg text-xs text-slate-400 hover:text-rose-400 cursor-pointer" title="Remove node">✕</button>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (optgroup) {
+        optgroup.innerHTML = appState.gpuNodes.length
+          ? appState.gpuNodes.map(n => `<option value="gpu:${n.id}">⚡ GPU: ${escapeHtml(n.name)} (${escapeHtml(n.model)})</option>`).join('')
+          : `<option value="custom-gpu">⚡ My Custom GPU Node (Configure in Vault)</option>`;
+      }
+    }
+
+    async function pingActiveGpu() {
+      const urlInput = document.getElementById('gpu-url-input').value.trim();
+      const activeNode = getActiveGpuNode();
+      const targetUrl = urlInput || (activeNode ? activeNode.url : '');
+
+      if (!targetUrl) {
+        showToast('Enter a GPU endpoint URL first.');
+        return;
+      }
+
+      showToast(`Pinging ${targetUrl}...`);
+      try {
+        const controller = new AbortController();
+        const timeout = setTimeout(() => controller.abort(), 3500);
+        const baseCheck = targetUrl.replace(/\/chat\/completions\/?$/, '/models');
+        const res = await fetch(baseCheck, { signal: controller.signal });
+        clearTimeout(timeout);
+        if (res.ok) {
+          showToast('✓ GPU Node Online & Reachable!');
+        } else {
+          showToast(`Node responded with status ${res.status} (Check CORS/Auth)`);
+        }
+      } catch (err) {
+        showToast('Could not reach GPU endpoint (Ensure server & CORS are enabled)');
+      }
+    }
+
+    function updateComputeIndicators() {
+      const configuredCount = Object.values(appState.apiKeys).filter(v => v && v.trim().length > 4).length;
+      const sidebarKeyBadge = document.getElementById('sidebar-key-badge');
+      const vaultActiveCount = document.getElementById('vault-active-count');
+      if (sidebarKeyBadge) sidebarKeyBadge.textContent = `${configuredCount} LIVE`;
+      if (vaultActiveCount) vaultActiveCount.textContent = `${configuredCount} Configured`;
+
+      const activeGpu = getActiveGpuNode();
+      const sidebarGpuName = document.getElementById('sidebar-gpu-name');
+      const sidebarGpuSub = document.getElementById('sidebar-gpu-sub');
+      const headerStatus = document.getElementById('header-compute-status');
+      const chatGpuTitle = document.getElementById('chat-side-gpu-title');
+      const chatGpuEndpoint = document.getElementById('chat-side-gpu-endpoint');
+      const chatGpuVram = document.getElementById('chat-side-gpu-vram');
+
+      if (activeGpu) {
+        if (sidebarGpuName) sidebarGpuName.textContent = activeGpu.name;
+        if (sidebarGpuSub) sidebarGpuSub.textContent = `${activeGpu.model} · ${activeGpu.vram}`;
+        if (headerStatus) headerStatus.textContent = `${configuredCount} APIs · ${activeGpu.name.split('·')[0].trim()}`;
+        if (chatGpuTitle) chatGpuTitle.textContent = activeGpu.name;
+        if (chatGpuEndpoint) chatGpuEndpoint.textContent = activeGpu.model;
+        if (chatGpuVram) chatGpuVram.textContent = activeGpu.url;
+      }
+
+      const keysStatusEl = document.getElementById('chat-side-keys-status');
+      if (keysStatusEl) {
+        keysStatusEl.innerHTML = AI_PROVIDERS.slice(0, 6).map(p => {
+          const hasKey = (appState.apiKeys[p.id] || '').trim().length > 4;
+          return `
+            <div class="flex items-center justify-between py-1 px-2 rounded-lg bg-white/5">
+              <span class="truncate">${p.name.split(' ')[0]}</span>
+              <span class="font-mono text-[10px] ${hasKey ? 'text-emerald-400' : 'text-slate-500'}">${hasKey ? 'READY' : 'DEMO'}</span>
+            </div>
+          `;
+        }).join('');
+      }
+
+      const libCount = document.getElementById('sidebar-lib-count');
+      if (libCount) libCount.textContent = appState.library.length;
+    }
+
+    function exportConfigBackup() {
+      const payload = {
+        exportedAt: new Date().toISOString(),
+        gpuNodes: appState.gpuNodes,
+        apiKeysConfigured: Object.keys(appState.apiKeys).filter(k => appState.apiKeys[k])
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'antimatter-compute-manifest.json';
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('Exported compute manifest JSON');
+    }
+
+    /* ============================================================================
+       ALL-IN-ONE MULTI-AI CHAT ENGINE
+       ============================================================================ */
+    function onProviderChange() {
+      const select = document.getElementById('provider-select');
+      const badge = document.getElementById('chat-mode-badge');
+      if (!select || !badge) return;
+
+      const val = select.value;
+      if (val.startsWith('gpu:')) {
+        const gpuId = val.replace('gpu:', '');
+        const node = appState.gpuNodes.find(n => n.id === gpuId);
+        badge.className = 'text-[11px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+        badge.textContent = `⚡ GPU Node: ${node ? node.model : 'Custom GPU'}`;
+        return;
+      }
+
+      const hasKey = (appState.apiKeys[val] || '').trim().length > 4 || (appState.apiKeys['openrouter'] || '').trim().length > 4;
+      if (hasKey) {
+        badge.className = 'text-[11px] font-mono px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30';
+        badge.textContent = '● Live API Connected';
+      } else {
+        badge.className = 'text-[11px] font-mono px-2.5 py-1 rounded-full bg-amber-500/15 text-amber-300 border border-amber-500/30';
+        badge.textContent = '● Antimatter Smart Sim (Add Key for Live)';
+      }
+    }
+
+    function toggleCouncilMode() {
+      appState.councilMode = !appState.councilMode;
+      const bar = document.getElementById('council-bar');
+      const label = document.getElementById('council-state-label');
+      const btn = document.getElementById('council-toggle-btn');
+
+      if (appState.councilMode) {
+        bar.classList.remove('hidden');
+        label.textContent = 'ON';
+        btn.classList.add('border-cyan-400', 'bg-cyan-500/15', 'text-cyan-200');
+        showToast('Multi-AI Council activated! Prompts will query multiple models.');
+      } else {
+        bar.classList.add('hidden');
+        label.textContent = 'OFF';
+        btn.classList.remove('border-cyan-400', 'bg-cyan-500/15', 'text-cyan-200');
+        showToast('Single-model chat mode');
+      }
+    }
+
+    function handleChatKeydown(e) {
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        handleChatSubmit(e);
+      }
+    }
+
+    function sendQuickPrompt(text) {
+      navigateTo('chat');
+      const input = document.getElementById('chat-input');
+      input.value = text;
+      handleChatSubmit(new Event('submit'));
+    }
+
+    function startNewConversation() {
+      navigateTo('chat');
+      appState.chatHistory = [];
+      const thread = document.getElementById('chat-thread');
+      thread.innerHTML = `
+        <div id="chat-welcome" class="max-w-2xl mx-auto text-center py-8 space-y-5">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-gradient-to-br from-violet-600/30 to-cyan-500/30 border border-violet-400/30 flex items-center justify-center text-2xl">✦</div>
+          <div>
+            <h2 class="font-display text-2xl font-extrabold">Fresh Antimatter Session</h2>
+            <p class="text-sm mt-1.5" style="color: var(--text-secondary)">Select any AI engine or enable Multi-AI Council above.</p>
+          </div>
+        </div>
+      `;
+    }
+
+    async function handleChatSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('chat-input');
+      const prompt = input.value.trim();
+      if (!prompt) return;
+
+      const welcome = document.getElementById('chat-welcome');
+      if (welcome) welcome.remove();
+
+      input.value = '';
+      appendUserBubble(prompt);
+      appState.chatHistory.push({ role: 'user', content: prompt });
+
+      if (appState.councilMode) {
+        const selectedMembers = Array.from(document.querySelectorAll('.council-member-cb:checked')).map(cb => cb.value);
+        const members = selectedMembers.length ? selectedMembers : ['openai', 'gemini', 'claude'];
+        await runMultiAiCouncil(prompt, members);
+      } else {
+        const providerId = document.getElementById('provider-select').value;
+        await runSingleModelResponse(prompt, providerId);
+      }
+    }
+
+    function appendUserBubble(text) {
+      const thread = document.getElementById('chat-thread');
+      const div = document.createElement('div');
+      div.className = 'flex justify-end';
+      div.innerHTML = `
+        <div class="max-w-2xl rounded-2xl rounded-tr-sm px-4 py-3 bg-gradient-to-r from-violet-600/85 to-indigo-600/85 text-white text-sm shadow-lg">
+          ${escapeHtml(text).replace(/\n/g, '<br/>')}
+        </div>
+      `;
+      thread.appendChild(div);
+      thread.scrollTop = thread.scrollHeight;
+    }
+
+    async function runSingleModelResponse(prompt, providerId) {
+      const thread = document.getElementById('chat-thread');
+      const loaderId = 'loader-' + Date.now();
+      const label = getProviderDisplayName(providerId);
+
+      const loaderDiv = document.createElement('div');
+      loaderDiv.id = loaderId;
+      loaderDiv.className = 'flex items-start gap-3 max-w-3xl';
+      loaderDiv.innerHTML = `
+        <div class="w-8 h-8 rounded-xl bg-cyan-500/20 border border-cyan-500/30 flex items-center justify-center text-cyan-300 text-xs font-bold shrink-0">✦</div>
+        <div class="glass-panel rounded-2xl rounded-tl-sm px-4 py-3 text-sm space-y-1">
+          <div class="text-[11px] font-mono text-cyan-300">${escapeHtml(label)}</div>
+          <div class="flex items-center gap-1.5 py-1"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+        </div>
+      `;
+      thread.appendChild(loaderDiv);
+      thread.scrollTop = thread.scrollHeight;
+
+      const result = await queryModelEngine(providerId, prompt);
+      const target = document.getElementById(loaderId);
+      if (target) {
+        target.innerHTML = `
+          <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-violet-600 to-cyan-500 flex items-center justify-center text-white text-xs font-bold shrink-0">✦</div>
+          <div class="glass-panel rounded-2xl rounded-tl-sm px-4 py-3.5 text-sm space-y-2 max-w-3xl">
+            <div class="flex items-center justify-between gap-4 border-b border-white/10 pb-1.5">
+              <span class="text-xs font-mono font-bold text-cyan-300">${escapeHtml(label)}</span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-slate-400">${result.source}</span>
+            </div>
+            <div class="chat-prose leading-relaxed">${formatMarkdown(result.text)}</div>
+          </div>
+        `;
+      }
+      appState.chatHistory.push({ role: 'assistant', provider: label, content: result.text });
+      thread.scrollTop = thread.scrollHeight;
+    }
+
+    async function runMultiAiCouncil(prompt, memberIds) {
+      const thread = document.getElementById('chat-thread');
+      const gridId = 'council-' + Date.now();
+
+      const wrapper = document.createElement('div');
+      wrapper.id = gridId;
+      wrapper.className = 'space-y-2';
+      wrapper.innerHTML = `
+        <div class="text-[11px] font-mono uppercase tracking-wider text-violet-300 flex items-center gap-2">
+          <span>⚡</span> MULTI-AI COUNCIL PARALLEL SYNTHESIS (${memberIds.length} ENGINES)
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3" id="${gridId}-cards">
+          ${memberIds.map(id => `
+            <div id="${gridId}-${id}" class="glass-panel rounded-2xl p-4 space-y-2 border border-violet-500/25">
+              <div class="text-xs font-mono font-bold text-cyan-300">${escapeHtml(getProviderDisplayName(id))}</div>
+              <div class="flex items-center gap-1.5 py-2"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      thread.appendChild(wrapper);
+      thread.scrollTop = thread.scrollHeight;
+
+      await Promise.all(memberIds.map(async (id) => {
+        const res = await queryModelEngine(id, prompt);
+        const card = document.getElementById(`${gridId}-${id}`);
+        if (card) {
+          card.innerHTML = `
+            <div class="flex items-center justify-between border-b border-white/10 pb-1.5">
+              <span class="text-xs font-mono font-bold text-cyan-300">${escapeHtml(getProviderDisplayName(id))}</span>
+              <span class="text-[10px] font-mono text-slate-400">${res.source}</span>
+            </div>
+            <div class="chat-prose text-xs leading-relaxed max-h-72 overflow-y-auto">${formatMarkdown(res.text)}</div>
+          `;
+        }
+      }));
+      thread.scrollTop = thread.scrollHeight;
+    }
+
+    function getProviderDisplayName(providerId) {
+      if (providerId.startsWith('gpu:')) {
+        const node = appState.gpuNodes.find(n => n.id === providerId.replace('gpu:', ''));
+        return node ? `⚡ ${node.name}` : 'Custom GPU Node';
+      }
+      if (providerId === 'custom-gpu') {
+        const active = getActiveGpuNode();
+        return active ? `⚡ ${active.name}` : 'Custom GPU Node';
+      }
+      const found = AI_PROVIDERS.find(p => p.id === providerId);
+      if (found) return found.name;
+      if (providerId === 'meta') return 'Meta Llama 3.3 70B';
+      return providerId.toUpperCase();
+    }
+
+    /* ============================================================================
+       UNIFIED LIVE API + LOCAL GPU + SMART FALLBACK QUERY ENGINE
+       ============================================================================ */
+    async function queryModelEngine(providerId, prompt) {
+      try {
+        // 1. Custom GPU Node (Ollama / vLLM / LM Studio)
+        if (providerId.startsWith('gpu:') || providerId === 'custom-gpu') {
+          const gpuId = providerId.startsWith('gpu:') ? providerId.replace('gpu:', '') : appState.activeGpuId;
+          const node = appState.gpuNodes.find(n => n.id === gpuId) || getActiveGpuNode();
+          if (node && node.url) {
+            const headers = { 'Content-Type': 'application/json' };
+            if (node.token) headers['Authorization'] = `Bearer ${node.token}`;
+            const res = await fetch(node.url, {
+              method: 'POST',
+              headers,
+              body: JSON.stringify({
+                model: node.model || 'llama3.2',
+                messages: [{ role: 'user', content: prompt }],
+                temperature: 0.7
+              })
+            });
+            if (res.ok) {
+              const data = await res.json();
+              const reply = data.choices?.[0]?.message?.content || data.response || JSON.stringify(data);
+              return { text: reply, source: `LIVE GPU (${node.model})` };
+            }
+          }
+          return {
+            text: generateSmartSimulatedReply(providerId, prompt, true),
+            source: 'GPU Sim (Start Ollama/vLLM with CORS)'
+          };
+        }
+
+        // 2. Google Gemini Live REST API
+        if (providerId === 'gemini' && appState.apiKeys.gemini) {
+          const key = appState.apiKeys.gemini;
+          const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(key)}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }]
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const reply = data.candidates?.[0]?.content?.parts?.[0]?.text;
+            if (reply) return { text: reply, source: 'LIVE GEMINI API' };
+          }
+        }
+
+        // 3. OpenAI / DeepSeek / Perplexity / Grok / Kimi / OpenRouter compatible endpoints
+        const endpointMap = {
+          openai: { url: 'https://api.openai.com/v1/chat/completions', model: 'gpt-4o-mini', key: appState.apiKeys.openai },
+          deepseek: { url: 'https://api.deepseek.com/chat/completions', model: 'deepseek-chat', key: appState.apiKeys.deepseek },
+          perplexity: { url: 'https://api.perplexity.ai/chat/completions', model: 'sonar', key: appState.apiKeys.perplexity },
+          grok: { url: 'https://api.x.ai/v1/chat/completions', model: 'grok-2-latest', key: appState.apiKeys.grok },
+          kimi: { url: 'https://api.moonshot.cn/v1/chat/completions', model: 'moonshot-v1-8k', key: appState.apiKeys.kimi }
+        };
+
+        const config = endpointMap[providerId];
+        if (config && config.key) {
+          const res = await fetch(config.url, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${config.key}`
+            },
+            body: JSON.stringify({
+              model: config.model,
+              messages: [{ role: 'user', content: prompt }]
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const reply = data.choices?.[0]?.message?.content;
+            if (reply) return { text: reply, source: 'LIVE API' };
+          }
+        }
+
+        // 4. OpenRouter Fallback if user provided an OpenRouter key
+        if (appState.apiKeys.openrouter) {
+          const orModels = {
+            claude: 'anthropic/claude-3.7-sonnet',
+            meta: 'meta-llama/llama-3.3-70b-instruct',
+            openai: 'openai/gpt-4o',
+            gemini: 'google/gemini-2.5-pro-exp-03-25',
+            deepseek: 'deepseek/deepseek-r1',
+            grok: 'x-ai/grok-2-1212'
+          };
+          const res = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${appState.apiKeys.openrouter}`
+            },
+            body: JSON.stringify({
+              model: orModels[providerId] || 'meta-llama/llama-3.3-70b-instruct',
+              messages: [{ role: 'user', content: prompt }]
+            })
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const reply = data.choices?.[0]?.message?.content;
+            if (reply) return { text: reply, source: 'LIVE OPENROUTER' };
+          }
+        }
+      } catch (err) {
+        console.warn('Live API call fell back to Antimatter Sim:', err);
+      }
+
+      // 5. Intelligent Simulated Fallback (Zero-Setup Experience)
+      await new Promise(r => setTimeout(r, 550 + Math.random() * 450));
+      return {
+        text: generateSmartSimulatedReply(providerId, prompt, false),
+        source: 'Antimatter Smart Sim'
+      };
+    }
+
+    function generateSmartSimulatedReply(providerId, prompt, isGpu) {
+      const persona = {
+        openai: '**ChatGPT (GPT-4o) Perspective:** Here is a structured, actionable blueprint tailored to your request.',
+        gemini: '**Gemini 2.5 Pro Synthesis:** Combining multimodal context and ecosystem scalability for your objective.',
+        claude: '**Claude 3.7 Sonnet Analysis:** Let’s break this down cleanly with architectural clarity and edge-case precision.',
+        deepseek: '**DeepSeek R1 Reasoning Trace:** Evaluating optimal system efficiency, latency bounds, and implementation steps.',
+        grok: '**xAI Grok Real-Time Take:** Straight to the point—cutting through noise for maximum execution speed.',
+        perplexity: '**Perplexity Sonar Brief:** Synthesizing verified best practices and modern industry benchmarks.'
+      }[providerId] || (isGpu ? '**Local GPU Node Inference:** Executing sovereign zero-data-leak response on your dedicated hardware.' : '**Antimatter AI Core:** Unified synthesis ready.');
+
+      return `${persona}\n\nRegarding **"${prompt.slice(0, 110)}${prompt.length > 110 ? '...' : ''}"**:\n\n1. **Core Architecture:** Decouple your frontend state from inference routing so you can switch seamlessly between cloud frontier models and local GPU nodes.\n2. **Next-Gen Execution:** Use streaming responses and edge caching to achieve sub-200ms perceived latency.\n3. **Ready to Build:** Want me to turn this concept into a live, downloadable webpage? Open **Antimatter Web Builder** in the sidebar.\n\n*Tip: Add your live API key or start your local Ollama/vLLM server in **GPU & API Keys** for real-time model weights.*`;
+    }
+
+    /* ============================================================================
+       ANTIMATTER WEBSITE BUILDER
+       ============================================================================ */
+    async function handleBuildWebsite(e) {
+      e.preventDefault();
+      const name = document.getElementById('site-name').value.trim();
+      const desc = document.getElementById('site-description').value.trim();
+      const style = document.querySelector('input[name="style"]:checked')?.value || 'antimatter';
+      const engine = document.getElementById('builder-engine').value;
+
+      if (!name || !desc) return;
+
+      const btn = document.getElementById('builder-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span>✦</span> Synthesizing Antimatter Site...';
+
+      let htmlCode = '';
+
+      if (engine === 'ai-live') {
+        const aiPrompt = `Create a complete, single-file responsive HTML5 landing page using Tailwind CDN (<script src="https://cdn.tailwindcss.com"><\/script>) for "${name}". Description: ${desc}. Theme style: ${style}. Return ONLY raw HTML starting with <!doctype html> and no markdown fences.`;
+        const providerId = document.getElementById('provider-select').value;
+        const res = await queryModelEngine(providerId, aiPrompt);
+        const cleaned = res.text.replace(/^```html\s*/i, '').replace(/```\s*$/i, '').trim();
+        if (cleaned.toLowerCase().includes('<html')) {
+          htmlCode = cleaned;
+        }
+      }
+
+      if (!htmlCode) {
+        htmlCode = generateAntimatterWebsiteTemplate(name, desc, style);
+      }
+
+      appState.currentGeneratedHtml = htmlCode;
+      appState.currentGeneratedTitle = name;
+
+      const iframe = document.getElementById('site-preview');
+      const codeArea = document.getElementById('site-code-view');
+      const emptyOverlay = document.getElementById('preview-empty');
+
+      iframe.srcdoc = htmlCode;
+      codeArea.value = htmlCode;
+      emptyOverlay.classList.add('hidden');
+
+      document.getElementById('save-site-btn').disabled = false;
+      document.getElementById('download-site-btn').disabled = false;
+
+      btn.disabled = false;
+      btn.innerHTML = '<span>✦</span> Generate Future-Ready Website <span>→</span>';
+      showToast(`Synthesized "${name}" website draft!`);
+    }
+
+    function generateAntimatterWebsiteTemplate(name, desc, style) {
+      const themes = {
+        antimatter: {
+          bg: '#06070f',
+          surface: 'rgba(17, 22, 42, 0.78)',
+          text: '#f8fafc',
+          sub: '#94a3b8',
+          accent: '#8b5cf6',
+          accent2: '#06b6d4',
+          border: 'rgba(139, 92, 246, 0.28)',
+          btnClass: 'background: linear-gradient(135deg, #7c3aed, #06b6d4); color: #fff;'
+        },
+        bold: {
+          bg: '#090d16',
+          surface: '#111827',
+          text: '#ffffff',
+          sub: '#9ca3af',
+          accent: '#3b82f6',
+          accent2: '#10b981',
+          border: 'rgba(59, 130, 246, 0.3)',
+          btnClass: 'background: linear-gradient(135deg, #2563eb, #10b981); color: #fff;'
+        },
+        warm: {
+          bg: '#fdf8f3',
+          surface: '#ffffff',
+          text: '#1c1917',
+          sub: '#57534e',
+          accent: '#d97706',
+          accent2: '#e11d48',
+          border: 'rgba(217, 119, 6, 0.22)',
+          btnClass: 'background: linear-gradient(135deg, #d97706, #e11d48); color: #fff;'
+        },
+        calm: {
+          bg: '#f8fafc',
+          surface: '#ffffff',
+          text: '#0f172a',
+          sub: '#475569',
+          accent: '#0f172a',
+          accent2: '#0284c7',
+          border: 'rgba(15, 23, 42, 0.12)',
+          btnClass: 'background: #0f172a; color: #fff;'
+        }
+      };
+
+      const t = themes[style] || themes.antimatter;
+      const safeName = escapeHtml(name);
+      const safeDesc = escapeHtml(desc);
+
+      return `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${safeName} — Future-Ready Experience</title>
+  <script src="https://cdn.tailwindcss.com"><\/script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Manrope', sans-serif;
+      background-color: ${t.bg};
+      color: ${t.text};
+      margin: 0;
+    }
+    .glass {
+      background: ${t.surface};
+      backdrop-filter: blur(16px);
+      border: 1px solid ${t.border};
+    }
+    .cta-btn {
+      ${t.btnClass}
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <header class="sticky top-0 z-30 glass">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="font-extrabold text-lg tracking-tight flex items-center gap-2">
+        <span style="color:${t.accent}">✦</span> ${safeName}
+      </div>
+      <nav class="hidden md:flex items-center gap-6 text-sm opacity-80">
+        <a href="#features" class="hover:opacity-100">Architecture</a>
+        <a href="#metrics" class="hover:opacity-100">Performance</a>
+        <a href="#launch" class="hover:opacity-100">Access</a>
+      </nav>
+      <a href="#launch" class="cta-btn px-4 py-2 rounded-xl text-xs font-bold shadow-lg">Get Started →</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="max-w-6xl mx-auto px-6 py-20 md:py-28 text-center space-y-6">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold glass">
+        <span style="color:${t.accent2}">●</span> POWERED BY ANTIMATTER NEXT-GEN ARCHITECTURE
+      </div>
+      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight">
+        ${safeName}: Engineered for What Comes Next.
+      </h1>
+      <p class="text-base sm:text-xl max-w-2xl mx-auto leading-relaxed" style="color:${t.sub}">
+        ${safeDesc}
+      </p>
+      <div class="flex flex-wrap justify-center gap-4 pt-4">
+        <a href="#launch" class="cta-btn px-7 py-3.5 rounded-2xl font-bold text-sm shadow-xl">Launch Experience ↗</a>
+        <a href="#features" class="glass px-7 py-3.5 rounded-2xl font-bold text-sm">Explore Capabilities</a>
+      </div>
+    </section>
+
+    <section id="features" class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="glass p-7 rounded-3xl space-y-3">
+        <div class="text-2xl" style="color:${t.accent}">⚡</div>
+        <h3 class="text-xl font-bold">Zero-Latency Core</h3>
+        <p class="text-sm leading-relaxed" style="color:${t.sub}">Built from the ground up for instant responsiveness, adaptive scaling, and seamless multi-device ergonomics.</p>
+      </div>
+      <div class="glass p-7 rounded-3xl space-y-3">
+        <div class="text-2xl" style="color:${t.accent2}">◈</div>
+        <h3 class="text-xl font-bold">Autonomous Intelligence</h3>
+        <p class="text-sm leading-relaxed" style="color:${t.sub}">Deeply integrated workflows designed to turn complex ideas into real-world outcomes automatically.</p>
+      </div>
+      <div class="glass p-7 rounded-3xl space-y-3">
+        <div class="text-2xl" style="color:${t.accent}">✦</div>
+        <h3 class="text-xl font-bold">Sovereign Security</h3>
+        <p class="text-sm leading-relaxed" style="color:${t.sub}">End-to-end cryptographic resilience and privacy-first architecture ready for the quantum era.</p>
+      </div>
+    </section>
+
+    <section id="launch" class="max-w-4xl mx-auto px-6 py-16">
+      <div class="glass rounded-3xl p-8 sm:p-12 text-center space-y-5">
+        <h2 class="text-2xl sm:text-4xl font-extrabold">Ready to experience ${safeName}?</h2>
+        <p class="text-sm sm:text-base max-w-xl mx-auto" style="color:${t.sub}">Deploy immediately or customize every component inside your workspace.</p>
+        <form onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Request Confirmed!';" class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto pt-2">
+          <input type="email" required placeholder="you@domain.com" class="flex-1 px-4 py-3 rounded-xl text-sm glass focus:outline-none" />
+          <button type="submit" class="cta-btn px-6 py-3 rounded-xl font-bold text-sm cursor-pointer">Request Access</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t py-8 text-center text-xs opacity-60" style="border-color:${t.border}">
+    © ${new Date().getFullYear()} ${safeName} · Synthesized with NextLevel Super AI Antimatter Engine
+  </footer>
+</body>
+</html>`;
+    }
+
+    function switchBuilderView(view) {
+      const iframe = document.getElementById('site-preview');
+      const codeArea = document.getElementById('site-code-view');
+      const prevBtn = document.getElementById('tab-preview-btn');
+      const codeBtn = document.getElementById('tab-code-btn');
+
+      if (view === 'preview') {
+        iframe.classList.remove('hidden');
+        codeArea.classList.add('hidden');
+        prevBtn.className = 'px-2.5 py-1 rounded-md bg-violet-600 text-white font-semibold cursor-pointer';
+        codeBtn.className = 'px-2.5 py-1 rounded-md text-slate-400 hover:text-white cursor-pointer';
+      } else {
+        iframe.classList.add('hidden');
+        codeArea.classList.remove('hidden');
+        codeBtn.className = 'px-2.5 py-1 rounded-md bg-violet-600 text-white font-semibold cursor-pointer';
+        prevBtn.className = 'px-2.5 py-1 rounded-md text-slate-400 hover:text-white cursor-pointer';
+      }
+    }
+
+    function downloadGeneratedSite() {
+      if (!appState.currentGeneratedHtml) return;
+      const slug = (appState.currentGeneratedTitle || 'antimatter-site').toLowerCase().replace(/[^a-z0-9]+/g, '-');
+      const blob = new Blob([appState.currentGeneratedHtml], { type: 'text/html' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `${slug}.html`;
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast(`Downloaded ${slug}.html`);
+    }
+
+    /* ============================================================================
+       LIBRARY & TOOLS DIRECTORY
+       ============================================================================ */
+    function saveGeneratedSiteToLibrary() {
+      if (!appState.currentGeneratedHtml) return;
+      appState.library.unshift({
+        id: 'item-' + Date.now(),
+        type: 'website',
+        title: appState.currentGeneratedTitle || 'Untitled Website',
+        createdAt: new Date().toLocaleDateString(),
+        html: appState.currentGeneratedHtml
+      });
+      localStorage.setItem(STORAGE_KEYS.LIBRARY, JSON.stringify(appState.library));
+      renderLibrary();
+      updateComputeIndicators();
+      showToast('Saved website draft to My Library!');
+    }
+
+    function saveCurrentChatToLibrary() {
+      if (!appState.chatHistory.length) {
+        showToast('Start a conversation first before saving.');
+        return;
+      }
+      const firstUser = appState.chatHistory.find(m => m.role === 'user')?.content || 'AI Research Session';
+      appState.library.unshift({
+        id: 'chat-' + Date.now(),
+        type: 'chat',
+        title: firstUser.slice(0, 48) + (firstUser.length > 48 ? '...' : ''),
+        createdAt: new Date().toLocaleDateString(),
+        messages: [...appState.chatHistory]
+      });
+      localStorage.setItem(STORAGE_KEYS.LIBRARY, JSON.stringify(appState.library));
+      renderLibrary();
+      updateComputeIndicators();
+      showToast('Saved AI chat session to My Library!');
+    }
+
+    function renderLibrary() {
+      const container = document.getElementById('library-content');
+      if (!container) return;
+
+      if (!appState.library.length) {
+        container.innerHTML = `
+          <div class="col-span-full glass-panel rounded-3xl p-12 text-center space-y-3">
+            <div class="text-3xl">▤</div>
+            <h3 class="font-display font-bold text-lg">Your Antimatter Vault is ready</h3>
+            <p class="text-xs max-w-md mx-auto" style="color: var(--text-secondary)">
+              Website drafts and AI chat sessions you save will appear here for instant reload or export.
+            </p>
+            <button onclick="navigateTo('builder')" class="antimatter-btn px-5 py-2.5 rounded-xl text-xs font-semibold mt-2 cursor-pointer">
+              Build your first website →
+            </button>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = appState.library.map(item => `
+        <div class="glass-panel rounded-2xl p-5 flex flex-col justify-between space-y-4">
+          <div class="space-y-1.5">
+            <div class="flex items-center justify-between">
+              <span class="text-[10px] font-mono uppercase px-2 py-0.5 rounded ${item.type === 'website' ? 'bg-fuchsia-500/15 text-fuchsia-300' : 'bg-cyan-500/15 text-cyan-300'}">
+                ${item.type === 'website' ? '▧ WEBSITE DRAFT' : '◈ AI SESSION'}
+              </span>
+              <span class="text-[11px] font-mono" style="color: var(--text-muted)">${item.createdAt}</span>
+            </div>
+            <h3 class="font-display font-bold text-base truncate">${escapeHtml(item.title)}</h3>
+            <p class="text-xs" style="color: var(--text-secondary)">
+              ${item.type === 'website' ? 'Standalone responsive HTML5 draft ready to preview or download.' : `${item.messages?.length || 0} messages preserved in local storage.`}
+            </p>
+          </div>
+          <div class="flex items-center gap-2 pt-2 border-t border-white/10">
+            <button onclick="openLibraryItem('${item.id}')" class="flex-1 py-2 rounded-xl bg-white/10 hover:bg-violet-600 hover:text-white text-xs font-semibold transition-colors cursor-pointer">
+              Open in Workspace
+            </button>
+            <button onclick="deleteLibraryItem('${item.id}')" class="p-2 rounded-xl text-xs text-slate-400 hover:text-rose-400 cursor-pointer" title="Delete">
+              ✕
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function openLibraryItem(id) {
+      const item = appState.library.find(i => i.id === id);
+      if (!item) return;
+
+      if (item.type === 'website') {
+        appState.currentGeneratedHtml = item.html;
+        appState.currentGeneratedTitle = item.title;
+        navigateTo('builder');
+        document.getElementById('site-preview').srcdoc = item.html;
+        document.getElementById('site-code-view').value = item.html;
+        document.getElementById('preview-empty').classList.add('hidden');
+        document.getElementById('save-site-btn').disabled = false;
+        document.getElementById('download-site-btn').disabled = false;
+        showToast(`Loaded "${item.title}" into Web Builder`);
+      } else if (item.type === 'chat') {
+        navigateTo('chat');
+        const thread = document.getElementById('chat-thread');
+        thread.innerHTML = '';
+        appState.chatHistory = item.messages || [];
+        appState.chatHistory.forEach(m => {
+          if (m.role === 'user') {
+            appendUserBubble(m.content);
+          } else {
+            const div = document.createElement('div');
+            div.className = 'glass-panel rounded-2xl p-4 text-sm space-y-1 max-w-3xl';
+            div.innerHTML = `<div class="text-xs font-mono text-cyan-300">${escapeHtml(m.provider || 'AI')}</div><div class="chat-prose">${formatMarkdown(m.content)}</div>`;
+            thread.appendChild(div);
+          }
+        });
+        showToast('Restored AI chat session');
+      }
+    }
+
+    function deleteLibraryItem(id) {
+      appState.library = appState.library.filter(i => i.id !== id);
+      localStorage.setItem(STORAGE_KEYS.LIBRARY, JSON.stringify(appState.library));
+      renderLibrary();
+      updateComputeIndicators();
+      showToast('Removed item from Library');
+    }
+
+    function setToolCategory(cat) {
+      appState.selectedToolCategory = cat;
+      document.querySelectorAll('.tool-cat-btn').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold bg-violet-600 text-white cursor-pointer';
+        } else {
+          btn.className = 'tool-cat-btn px-3.5 py-1.5 rounded-xl text-xs font-semibold glass-panel cursor-pointer';
+        }
+      });
+      renderToolsDirectory();
+    }
+
+    function renderToolsDirectory() {
+      const grid = document.getElementById('tools-grid');
+      if (!grid) return;
+      const query = (document.getElementById('tool-search')?.value || '').toLowerCase();
+
+      const filtered = TOOLS_DIRECTORY.filter(t => {
+        const matchCat = appState.selectedToolCategory === 'All' || t.category === appState.selectedToolCategory;
+        const matchQuery = t.name.toLowerCase().includes(query) || t.desc.toLowerCase().includes(query) || t.tag.toLowerCase().includes(query);
+        return matchCat && matchQuery;
+      });
+
+      grid.innerHTML = filtered.map(tool => {
+        const isPinned = appState.pinnedToolIds.includes(tool.id);
+        return `
+          <div class="glass-panel rounded-2xl p-5 flex flex-col justify-between space-y-4">
+            <div class="space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-cyan-300">${tool.tag}</span>
+                <button onclick="togglePinTool('${tool.id}')" class="text-xs px-2 py-0.5 rounded ${isPinned ? 'text-amber-300 bg-amber-500/15' : 'text-slate-400 hover:text-white'} cursor-pointer" title="Pin to sidebar">
+                  ${isPinned ? '★ Pinned' : '☆ Pin'}
+                </button>
+              </div>
+              <h3 class="font-display font-bold text-base">${tool.name}</h3>
+              <p class="text-xs leading-relaxed" style="color: var(--text-secondary)">${tool.desc}</p>
+            </div>
+            <a href="${tool.url}" target="_blank" rel="noreferrer" class="w-full py-2 rounded-xl bg-white/5 hover:bg-violet-600 hover:text-white border border-white/10 text-center text-xs font-semibold transition-colors">
+              Launch ${tool.name} ↗
+            </a>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function togglePinTool(toolId) {
+      if (appState.pinnedToolIds.includes(toolId)) {
+        appState.pinnedToolIds = appState.pinnedToolIds.filter(id => id !== toolId);
+      } else {
+        appState.pinnedToolIds.push(toolId);
+      }
+      localStorage.setItem(STORAGE_KEYS.PINNED, JSON.stringify(appState.pinnedToolIds));
+      renderPinnedTools();
+      renderToolsDirectory();
+      showToast('Updated sidebar launchers');
+    }
+
+    function renderPinnedTools() {
+      const container = document.getElementById('pinned-tools-list');
+      if (!container) return;
+      const pinned = TOOLS_DIRECTORY.filter(t => appState.pinnedToolIds.includes(t.id));
+      container.innerHTML = pinned.map(t => `
+        <a href="${t.url}" target="_blank" rel="noreferrer" class="flex items-center justify-between px-2.5 py-2 rounded-xl text-xs hover:bg-white/5 transition-colors" style="color: var(--text-secondary)">
+          <span class="flex items-center gap-2 font-medium">
+            <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
+            ${t.name}
+          </span>
+          <span class="text-[11px] opacity-60">↗</span>
+        </a>
+      `).join('');
+    }
+
+    function renderHomeModelsStrip() {
+      const strip = document.getElementById('home-models-strip');
+      if (!strip) return;
+      const items = [
+        { name: 'ChatGPT 4o', sub: 'OpenAI', dot: 'bg-emerald-400' },
+        { name: 'Gemini 2.5', sub: 'Google', dot: 'bg-cyan-400' },
+        { name: 'Claude 3.7', sub: 'Anthropic', dot: 'bg-amber-400' },
+        { name: 'Grok 3', sub: 'xAI', dot: 'bg-slate-200' },
+        { name: 'DeepSeek R1', sub: 'Reasoning', dot: 'bg-blue-400' },
+        { name: 'My GPU Node', sub: 'Ollama / vLLM', dot: 'bg-violet-400' }
+      ];
+      strip.innerHTML = items.map(i => `
+        <div onclick="navigateTo('chat')" class="glass-panel rounded-2xl p-3.5 flex items-center gap-3 cursor-pointer">
+          <span class="w-2.5 h-2.5 rounded-full ${i.dot} shrink-0"></span>
+          <div class="min-w-0">
+            <div class="text-xs font-bold truncate">${i.name}</div>
+            <div class="text-[10px] font-mono" style="color: var(--text-muted)">${i.sub}</div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    /* ============================================================================
+       COMMAND PALETTE (CMD+K) & UTILITIES
+       ============================================================================ */
+    const COMMAND_ACTIONS = [
+      { label: 'All-in-One AI Chat (ChatGPT, Gemini, Claude, GPU)', action: () => navigateTo('chat') },
+      { label: 'GPU & API Keys Vault (Add Keys or Ollama Endpoint)', action: () => navigateTo('compute') },
+      { label: 'Antimatter Website Builder (Generate HTML)', action: () => navigateTo('builder') },
+      { label: 'Explore 16+ AI Tools Directory', action: () => navigateTo('tools') },
+      { label: 'My Saved Library & Website Drafts', action: () => navigateTo('library') },
+      { label: 'Toggle Multi-AI Council Compare Mode', action: () => { navigateTo('chat'); toggleCouncilMode(); } },
+      { label: 'Switch Dark / Light Glass Theme', action: () => toggleTheme() }
+    ];
+
+    function openCommandModal() {
+      const modal = document.getElementById('cmd-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      const input = document.getElementById('cmd-search-input');
+      input.value = '';
+      filterCommandItems();
+      setTimeout(() => input.focus(), 50);
+    }
+
+    function closeCommandModal() {
+      const modal = document.getElementById('cmd-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function filterCommandItems() {
+      const q = (document.getElementById('cmd-search-input').value || '').toLowerCase();
+      const list = document.getElementById('cmd-list');
+      const matches = COMMAND_ACTIONS.filter(c => c.label.toLowerCase().includes(q));
+      list.innerHTML = matches.map((c, idx) => `
+        <button onclick="runCommandIndex(${idx})" class="w-full text-left px-3.5 py-2.5 rounded-xl hover:bg-violet-600/25 flex items-center justify-between transition-colors cursor-pointer">
+          <span>${c.label}</span>
+          <span class="text-xs font-mono text-cyan-400">↵</span>
+        </button>
+      `).join('');
+      window._filteredCommands = matches;
+    }
+
+    function runCommandIndex(idx) {
+      const cmd = window._filteredCommands?.[idx];
+      closeCommandModal();
+      if (cmd) cmd.action();
+    }
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function formatMarkdown(text) {
+      let safe = escapeHtml(text);
+      // Code blocks
+      safe = safe.replace(/```([\s\S]*?)```/g, '<pre><code>$1</code></pre>');
+      // Inline code
+      safe = safe.replace(/`([^`]+)`/g, '<code>$1</code>');
+      // Bold
+      safe = safe.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      // Line breaks
+      safe = safe.replace(/\n/g, '<br/>');
+      return safe;
+    }
+  </script>
+</body>
+</html>
